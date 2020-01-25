@@ -4,22 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.guilherme.presentation.R;
-import com.guilherme.presentation.sala.ListaSalasAdapter;
-import com.guilherme.presentation.sala.Sala;
-import com.guilherme.presentation.sala.SalaDAO;
+import com.guilherme.presentation.sala.adapter.ListaSalasAdapter;
+import com.guilherme.presentation.sala.model.Sala;
+import com.guilherme.presentation.sala.dao.SalaDAO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListaSalasActivity extends AppCompatActivity{
-
-    ListView listaDeSalas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +33,7 @@ public class ListaSalasActivity extends AppCompatActivity{
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Intent intent = new Intent(ListaSalasActivity.this, ReservaActivity.class );
                 startActivity(intent);
             }

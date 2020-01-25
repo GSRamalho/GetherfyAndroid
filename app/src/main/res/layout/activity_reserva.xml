@@ -7,7 +7,7 @@
     tools:context=".activity.ReservaActivity">
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/activity_reserva_textoativa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.485" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/activity_reserva_textolocal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/screen_background_dark_transparent"
@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.405" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/activity_reserva_textonome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -49,7 +49,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/activity_reserva_textocapacidade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/screen_background_dark_transparent"
@@ -64,7 +64,7 @@
         app:layout_constraintVertical_bias="0.082" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/activity_reserva_textoarcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -77,7 +77,7 @@
         app:layout_constraintVertical_bias="0.162" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/activity_reserva_textomultimidia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/screen_background_dark_transparent"
@@ -93,7 +93,7 @@
         app:layout_constraintVertical_bias="0.242" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/activity_reserva_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
@@ -158,6 +158,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textoativa" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

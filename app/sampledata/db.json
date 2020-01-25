@@ -1,0 +1,51 @@
+{
+  "empresa": [
+    {
+      "id": 1,
+      "nome": "Wise",
+      "id_organizacao_pai": null,
+      "tipo_organizacao": "M",
+      "dominio": "wises.com.br",
+      "ativo": 1,
+      "dataCriacao": "2020-01-20",
+      "dataAlteracao": "2020-01-20"
+    }
+  ],
+  "usuario": [
+    {
+      "id": 1,
+      "nome": "Clovis",
+      "id_organizacao": 1,
+      "email": "clovis@wises.com.br"
+    }
+  ],
+  "sala": [
+    {
+      "id": 1,
+      "nome": "Conselho Jedi",
+      "quantidadePessoasSentadas": null,
+      "possuiMultimidia": 1,
+      "possuiArcon": 1,
+      "areaDaSala": 3.5,
+      "localizacao": "1o. andar",
+      "latitude": 0.001,
+      "longitude": 0.003,
+      "ativo": 1,
+      "dataCriacao": "2020-01-20",
+      "dataAlteracao": "2020-01-20"
+    }
+  ],
+  "reserva": [
+    {
+      "id": "1",
+      "sala": "Conselho Jedi",
+      "organizador": "Clovis",
+      "dataHoraInicio": "2020-01-20 14:00:00",
+      "dataHoraFim": "2020-01-20 15:00:00",
+      "descricao": "Reunião de Planejamento do Projeto Reserva de Salas",
+      "ativo": 1,
+      "dataCriacao": "2020-01-20",
+      "dataAlteracao": "2020-01-20"
+    }
+  ]
+}

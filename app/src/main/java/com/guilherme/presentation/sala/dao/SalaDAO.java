@@ -1,4 +1,6 @@
-package com.guilherme.presentation.sala;
+package com.guilherme.presentation.sala.dao;
+
+import com.guilherme.presentation.sala.model.Sala;
 
 import java.util.ArrayList;
 import java.util.Arrays;

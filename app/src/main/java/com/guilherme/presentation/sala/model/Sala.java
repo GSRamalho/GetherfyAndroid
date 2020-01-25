@@ -1,4 +1,4 @@
-package com.guilherme.presentation.sala;
+package com.guilherme.presentation.sala.model;
 
 import android.graphics.drawable.Drawable;
 
