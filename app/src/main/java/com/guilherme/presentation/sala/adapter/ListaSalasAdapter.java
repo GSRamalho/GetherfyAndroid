@@ -40,7 +40,7 @@ public class ListaSalasAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View viewCriada = LayoutInflater.from(context)
-                .inflate(R.layout.item_sala, parent, false);
+                .inflate(R.layout.item_sala_layout, parent, false);
 
         Sala sala = salas.get(position);
         TextView nomeDaSala = viewCriada.findViewById(R.id.item_sala_cardview_nome);
