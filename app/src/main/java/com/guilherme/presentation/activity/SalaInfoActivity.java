@@ -9,7 +9,7 @@ import com.guilherme.presentation.R;
 import com.guilherme.presentation.sala.dao.SalaDAO;
 import com.guilherme.presentation.sala.model.Sala;
 
-public class ReservaActivity extends AppCompatActivity {
+public class SalaInfoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

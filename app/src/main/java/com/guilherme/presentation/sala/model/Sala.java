@@ -1,6 +1,5 @@
 package com.guilherme.presentation.sala.model;
 
-import android.graphics.drawable.Drawable;
 
 public class Sala {
     private int id;

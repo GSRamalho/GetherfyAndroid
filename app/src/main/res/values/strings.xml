@@ -2,4 +2,7 @@
     <string name="app_name">PRESentation</string>
     <string name="linkLogin"><u>Já estou cadastrado</u></string>
     <string name="linkCadastrar"><u>Não possuo uma conta ainda</u></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

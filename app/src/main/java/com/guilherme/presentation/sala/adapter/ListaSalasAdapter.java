@@ -19,7 +19,6 @@ public class ListaSalasAdapter extends BaseAdapter {
     public ListaSalasAdapter(List<Sala> salas, Context context) {
         this.salas = salas;
         this.context = context;
-
     }
 
     @Override
