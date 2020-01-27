@@ -17,9 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_reserva_cardview1"
-        app:layout_constraintVertical_bias="0.485" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/activity_reserva_textolocal"
@@ -33,9 +31,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_reserva_cardview1"
-        app:layout_constraintVertical_bias="0.405" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/activity_reserva_textonome"
@@ -48,9 +44,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_reserva_cardview1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/activity_reserva_textocapacidade"
@@ -63,9 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_reserva_cardview1"
-        app:layout_constraintVertical_bias="0.082" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/activity_reserva_textoarcon"
@@ -78,9 +70,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_reserva_cardview1"
-        app:layout_constraintVertical_bias="0.162" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/activity_reserva_textomultimidia"
@@ -94,9 +84,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_reserva_cardview1"
-        app:layout_constraintVertical_bias="0.242" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/activity_reserva_area"
@@ -109,51 +97,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_reserva_cardview1"
-        app:layout_constraintVertical_bias="0.323" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/activity_reserva_cardview1"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:padding="10dp"
-        app:cardCornerRadius="18dp"
-        app:cardBackgroundColor="#0A1FA3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/activity_reserva_cardview2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="2dp"
-            android:layout_marginTop="8dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="22dp">
-
-            <ImageView
-                android:id="@+id/activity_reserva_imagem"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/sala_de_reuniao" />
-        </androidx.cardview.widget.CardView>
-
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/activity_reserva_imagem"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/activity_reserva_cardview1"
-        app:srcCompat="@drawable/cardview" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/sala_de_reuniao"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" />
 
     <Button
         android:id="@+id/button"
