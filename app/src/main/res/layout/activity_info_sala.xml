@@ -174,6 +174,7 @@
         app:srcCompat="@drawable/sala_de_reuniao" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

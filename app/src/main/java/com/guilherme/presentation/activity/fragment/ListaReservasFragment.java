@@ -49,7 +49,6 @@ public class ListaReservasFragment extends Fragment {
                 }
             });
         }
-
         return view;
     }
 
