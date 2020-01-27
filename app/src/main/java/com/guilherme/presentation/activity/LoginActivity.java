@@ -27,6 +27,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        
+
         TextView linkParaCadastro = findViewById(R.id.activity_login_linkCadastrar);
 
         linkParaCadastro.setOnClickListener(new View.OnClickListener() {

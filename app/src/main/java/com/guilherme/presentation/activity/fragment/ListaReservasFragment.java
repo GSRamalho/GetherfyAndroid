@@ -36,7 +36,7 @@ public class ListaReservasFragment extends Fragment {
         TextView avisoListaVazia = view.findViewById(R.id.fragment_reservas_avisoListaVazia);
         ListView listaDeReservas = view.findViewById(R.id.activity_lista_reservas);
         List<Reserva> reservas = new ReservaDAO().lista();
-        
+
         if (reservas == null){
             avisoListaVazia.setText("Você ainda não possui reservas");
         } else {

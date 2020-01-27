@@ -39,6 +39,7 @@
       "id": "1",
       "sala": "Conselho Jedi",
       "organizador": "Clovis",
+      "id_organizador": 1,
       "dataHoraInicio": "2020-01-20 14:00:00",
       "dataHoraFim": "2020-01-20 15:00:00",
       "descricao": "Reunião de Planejamento do Projeto Reserva de Salas",

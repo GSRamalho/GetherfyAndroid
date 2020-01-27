@@ -22,9 +22,13 @@ public class CadastrarActivity extends AppCompatActivity {
         cadastrarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 EditText campoEmail = findViewById(R.id.activity_cadastrar_email);
                 String emailString = campoEmail.getText().toString();
                 System.out.println("EMAIL DA PESSOA: "+emailString);
+
+                EditText campoNome = findViewById(R.id.activity_cadastrar_nome);
+                
 
                 System.out.println(emailString);
                 chamaActivityLogin();
