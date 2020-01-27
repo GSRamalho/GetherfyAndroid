@@ -7,16 +7,16 @@
     tools:context=".activity.fragment.ListaSalasFragment">
 
     <ListView
-        android:id="@+id/activity_salas_lista"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/item_sala_layout">
+    android:id="@+id/activity_salas_lista"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="#FFFFFF"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    tools:listitem="@layout/item_sala_layout">
 
-    </ListView>
+</ListView>
 </FrameLayout>

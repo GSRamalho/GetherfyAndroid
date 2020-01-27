@@ -23,11 +23,12 @@
     {
       "id": 1,
       "nome": "Conselho Jedi",
-      "quantidadePessoasSentadas": null,
+      "capacidade": null,
       "possuiMultimidia": true,
       "possuiArcon": true,
-      "areaDaSala": 3.5,
+      "area": 3.5,
       "localizacao": "1o. andar",
+      "possuiAcessibilidade": true,
       "ativo": true,
       "dataCriacao": "2020-01-20",
       "dataAlteracao": "2020-01-20"

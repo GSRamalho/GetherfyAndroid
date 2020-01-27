@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.guilherme.presentation.R;
 
-public class RegistroActivity extends AppCompatActivity {
+public class CadastrarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class RegistroActivity extends AppCompatActivity {
     }
 
     private void chamaActivityLogin() {
-        startActivity(new Intent(RegistroActivity.this, LoginActivity.class));
+        startActivity(new Intent(CadastrarActivity.this, LoginActivity.class));
         finish();
     }
 }

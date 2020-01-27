@@ -1,17 +1,21 @@
-package com.guilherme.presentation.sala.dao;
+package com.guilherme.presentation.reserva.dao;
 
+import com.guilherme.presentation.reserva.model.Reserva;
 import com.guilherme.presentation.sala.model.Sala;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
-public class SalaDAO {
+public class ReservaDAO {
 
-    public List<Sala> lista() { List<Sala> salas = new ArrayList<>(Arrays.asList(
+    public List<Reserva> lista() {
+        List<Reserva> reservas = null; /*new ArrayList<>(Arrays.asList(
 
-                new Sala(1, "Conselho Jedi", 20, true, true, 3.5, true, "1o. Andar", true )));
-        return salas;
+            new Reserva(1, "Conselho Jedi", 1, "Hoje", "Amanha", true)));
+        return reservas;*/
+        return reservas;
     }
 
 }

@@ -21,7 +21,7 @@ public class AbasActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_salas);
+        setContentView(R.layout.activity_abas);
 
 
         smartTabLayout = findViewById(R.id.viewPagerTab);

@@ -5,41 +5,49 @@ public class Sala {
     private int id;
     private String nome;
     private int capacidade;
-    private boolean arcon;
-    private boolean multimidia;
+    private boolean possuiArcon;
+    private boolean possuiMultimidia;
     private double area;
+    private boolean possuiAcessiblidade;
     private String localidade;
     private boolean ativa;
 
     public Sala(
             int id, String nome, int capacidade,
-            boolean arcon, boolean multimidia,
-            double area, String localidade, boolean ativa) {
+            boolean possuiArcon, boolean possuiMultimidia,
+            double area, boolean possuiAcessiblidade, String localidade, boolean ativa) {
 
         this.id = id;
         this.nome = nome;
         this.capacidade = capacidade;
-        this.arcon = arcon;
-        this.multimidia = multimidia;
+        this.possuiArcon = possuiArcon;
+        this.possuiMultimidia = possuiMultimidia;
         this.area = area;
         this.localidade = localidade;
         this.ativa = ativa;
     }
 
-    public boolean isArcon() {
-        return arcon;
+    public boolean possuiAcessiblidade() {
+        return possuiAcessiblidade;
     }
 
-    public void setArcon(boolean arcon) {
-        this.arcon = arcon;
+    public void setPossuiAcessiblidade(boolean possuiAcessiblidade) {
+        this.possuiAcessiblidade = possuiAcessiblidade;
+    }
+    public boolean possuiArcon() {
+        return possuiArcon;
     }
 
-    public boolean isMultimidia() {
-        return multimidia;
+    public void setPossuiArcon(boolean possuiArcon) {
+        this.possuiArcon = possuiArcon;
     }
 
-    public void setMultimidia(boolean multimidia) {
-        this.multimidia = multimidia;
+    public boolean possuiMultimidia() {
+        return possuiMultimidia;
+    }
+
+    public void setPossuiMultimidia(boolean possuiMultimidia) {
+        this.possuiMultimidia = possuiMultimidia;
     }
 
     public double getArea() {

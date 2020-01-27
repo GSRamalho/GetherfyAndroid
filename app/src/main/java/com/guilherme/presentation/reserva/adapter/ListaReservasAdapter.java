@@ -21,10 +21,10 @@ public class ListaReservasAdapter extends BaseAdapter {
         this.reservas = reservas;
         this.context = context;
     }
-
     @Override
     public int getCount() {
-        return reservas.size();
+         return reservas.size();
+
     }
 
     @Override
@@ -39,23 +39,17 @@ public class ListaReservasAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View viewCriada = LayoutInflater.from(context)
-                .inflate(R.layout.item_sala_layout, parent, false);
 
-        Reserva reserva = reservas.get(position);
-        TextView nomeDaSala = viewCriada.findViewById(R.id.item_sala_cardview_nome);
-        nomeDaSala.setText(reserva.getSala());
-
-        TextView enderecoDaSala = viewCriada.findViewById(R.id.item_sala_cardview_endereco);
-
-        enderecoDaSala.setText(reserva.getOrganizador());
-
-        TextView capacidadeDaSala = viewCriada.findViewById(R.id.item_sala_cardview_capacidade);
-        capacidadeDaSala.setText(reserva.getId()+ " assentos");
-
-        return viewCriada;
-
-
+        if (reservas.size() == 0) {
+            View viewVazia = LayoutInflater.from(context)
+                    .inflate(R.layout.item_reserva_vazio, parent, false);
+            return viewVazia;
+        } else {
+            View viewCriada = LayoutInflater.from(context)
+                    .inflate(R.layout.item_reserva_layout, parent, false);
+            Reserva reserva = reservas.get(position);
+            return viewCriada;
+        }
     }
 }
 

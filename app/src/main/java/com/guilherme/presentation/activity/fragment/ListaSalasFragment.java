@@ -24,7 +24,6 @@ public class ListaSalasFragment extends Fragment {
 
 
     public ListaSalasFragment() {
-        // Required empty public constructor
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

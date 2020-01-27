@@ -6,119 +6,188 @@
     android:layout_height="match_parent"
     tools:context=".activity.SalaInfoActivity">
 
-    <TextView
-        android:id="@+id/activity_reserva_textoativa"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/activity_info_sala_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#C9FFCA00"
-        android:padding="8dp"
-        android:text="Ativa"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/activity_info_sala_botaoVoltar"
+        android:layout_width="30dp"
+        android:layout_height="35dp"
+        android:background="@drawable/ic_botao_voltar"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_info_sala_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/activity_info_sala_toolbar" />
 
-    <TextView
-        android:id="@+id/activity_reserva_textolocal"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/activity_info_sala_cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#80FFCA00"
-        android:padding="8dp"
-        android:text="Localidade"
-
-        android:textColor="#000000"
+        android:layout_margin="12dp"
+        app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/activity_reserva_imagem"
+        app:layout_constraintVertical_bias="0.52">
 
-    <TextView
-        android:id="@+id/activity_reserva_textonome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#C9FFCA00"
-        android:padding="8dp"
-        android:text="Nome"
-        android:textColor="#020000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/activity_reserva_textocapacidade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#80FFCA00"
-        android:padding="8dp"
-        android:text="Capacidade: "
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/activity_reserva_textomultimidia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#80FFCA00"
+                android:padding="8dp"
+                android:text="Multimidia:"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textoarcon"
+                app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/activity_reserva_textoarcon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#C9FFCA00"
-        android:padding="8dp"
-        android:text="Ar Condicionado: "
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/activity_reserva_textoativa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#C9FFCA00"
+                android:padding="8dp"
+                android:text="Ativa:"
+                android:textColor="#000000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textomultimidia"
+                app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/activity_reserva_textomultimidia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#80FFCA00"
-        android:padding="8dp"
-        android:text="Multimidia"
+            <TextView
+                android:id="@+id/activity_reserva_textolocal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#80FFCA00"
+                android:padding="8dp"
+                android:text="Localidade:"
 
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+                android:textColor="#000000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textonome"
+                app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/activity_reserva_area"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#C9FFCA00"
-        android:padding="8dp"
-        android:text="Area"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/activity_reserva_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#C9FFCA00"
+                android:padding="8dp"
+                android:text="Area:"
+                android:textColor="#000000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textolocal"
+                app:layout_constraintVertical_bias="0.0"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <TextView
+                android:id="@+id/activity_reserva_textonome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#C9FFCA00"
+                android:padding="8dp"
+                android:text="Nome"
+                android:textColor="#020000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/activity_reserva_textocapacidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="#80FFCA00"
+                android:padding="8dp"
+                android:text="Capacidade: "
+                android:textColor="#000000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textolocal"
+                app:layout_constraintVertical_bias="0.02" />
+
+            <TextView
+                android:id="@+id/activity_reserva_textoarcon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#C9FFCA00"
+                android:padding="8dp"
+                android:text="Ar Condicionado: "
+                android:textColor="#000000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textocapacidade"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/activity_reserva_textoacessibilidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#80FFCA00"
+                android:padding="8dp"
+                android:text="Possui acessibilidade:"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textoativa" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <ImageView
         android:id="@+id/activity_reserva_imagem"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/sala_de_reuniao"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/botao"
-        android:padding="22dp"
-        android:text="Reservar"
-        android:textColor="#FFFFFF"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toBottomOf="@+id/activity_info_sala_toolbar"
+        app:srcCompat="@drawable/sala_de_reuniao" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textoativa" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/activity_info_salar_reservarBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/botao_reservar"
+            android:text="Reservar"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
