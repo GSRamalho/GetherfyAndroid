@@ -39,16 +39,14 @@ public class SalaInfoActivity extends AppCompatActivity implements DatePickerDia
                 datePicker.show(getSupportFragmentManager(), "date picker");
             }
         });
-
     }
+
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar calendario = Calendar.getInstance();
         calendario.set(Calendar.YEAR, year);
         calendario.set(Calendar.MONTH, month);
         calendario.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
-
 
         String diaAtual = DateFormat.getDateInstance().format(calendario.getTime());
     }
