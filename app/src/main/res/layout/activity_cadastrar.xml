@@ -6,7 +6,27 @@
     android:layout_height="match_parent"
     android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
     tools:context=".activity.CadastrarActivity"><![CDATA[>
+
+
+
+
+
+
     ]]>
+
+    <TextView
+        android:id="@+id/activity_cadastrar_textoPergunta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Já possui uma conta?"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/activity_cadastrar_linkLogin"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_cadastrar_btnCadastrar" />
 
     <EditText
         android:id="@+id/activity_cadastrar_email"
@@ -19,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.07999998" />
+        app:layout_constraintVertical_bias="0.100000024" />
 
     <EditText
         android:id="@+id/activity_cadastrar_nome"
@@ -32,7 +52,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_cadastrar_email"
-        app:layout_constraintVertical_bias="0.050000012" />
+        app:layout_constraintVertical_bias="0.044" />
+
+    <EditText
+        android:id="@+id/activity_login_senha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Insira uma senha"
+        android:inputType="textPersonName|textWebPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_cadastrar_email"
+        app:layout_constraintVertical_bias="0.205" />
 
     <Button
         android:id="@+id/activity_cadastrar_btnCadastrar"
@@ -44,9 +77,10 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_cadastrar_email"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.514" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -70,8 +104,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_cadastrar_btnCadastrar"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_cadastrar_btnCadastrar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,7 +34,6 @@ public class ListaSalasFragment extends Fragment {
         List<Sala> salas = new SalaDAO().lista();
         listaDeSalas.setAdapter(new ListaSalasAdapter(salas, view.getContext()));
 
-
         listaDeSalas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
