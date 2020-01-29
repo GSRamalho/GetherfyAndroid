@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.fragment.ListaReservasFragment">
+    tools:context="com.guilherme.getherfy.activity.fragment.ListaReservasFragment">
 
     <ListView
         android:id="@+id/activity_lista_reservas"

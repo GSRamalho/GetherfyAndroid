@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:theme="@style/AppTheme2"
-    tools:context=".activity.AbasActivity"
+    tools:context="com.guilherme.getherfy.activity.AbasActivity"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
