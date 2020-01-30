@@ -3,6 +3,7 @@ package com.guilherme.getherfy.sala.model;
 
 public class Sala {
     private int id;
+    private int idOrganizacao;
     private String nome;
     private int capacidade;
     private boolean possuiArcon;
@@ -13,7 +14,7 @@ public class Sala {
     private boolean ativa;
 
     public Sala(
-            int id, String nome, int capacidade,
+            int id, int idOrganizacao, String nome, int capacidade,
             boolean possuiArcon, boolean possuiMultimidia,
             double area, boolean possuiAcessiblidade, String localidade, boolean ativa) {
 

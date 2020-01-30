@@ -2,6 +2,7 @@
     <string name="app_name">Getherfy</string>
     <string name="linkLogin">Entrar</string>
     <string name="linkCadastrar">Não possuo uma conta ainda</string>
+    <string name="warningMessage">Existe mais de uma organizacaoutilizando esse dominio. Por favor, selecione qual a sua</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
