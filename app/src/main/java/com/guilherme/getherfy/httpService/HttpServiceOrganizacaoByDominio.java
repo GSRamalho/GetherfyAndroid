@@ -8,7 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class HttpServiceOrganizacao extends AsyncTask <String, Void, String> {
+public class HttpServiceOrganizacaoByDominio extends AsyncTask <String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {
         String urlWS = "http://172.30.248.132:8080/ReservaDeSala/rest/organizacao/organizacoesByDominio";

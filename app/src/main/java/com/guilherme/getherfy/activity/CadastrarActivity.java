@@ -15,7 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.guilherme.getherfy.httpService.HttpServiceCadastro;
-import com.guilherme.getherfy.httpService.HttpServiceOrganizacao;
+import com.guilherme.getherfy.httpService.HttpServiceOrganizacaoByDominio;
 import com.guilherme.getherfy.organizacao.model.Organizacao;
 import com.guilherme.presentation.R;
 
@@ -31,15 +31,13 @@ import java.util.concurrent.ExecutionException;
 import static android.view.View.VISIBLE;
 
 public class CadastrarActivity extends AppCompatActivity {
-
-    private int contagem;
-    JSONArray organizacoesJson = new JSONArray();
-
     Organizacao novaOrganizacao = new Organizacao();
-    int escolhaDoUsuario;
+    List<Organizacao> listaDeOrganizacoes = new ArrayList<>();
+    boolean marcouOrganizacao = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar);
         Button cadastrarBtn = findViewById(R.id.activity_cadastrar_btnCadastrar);
@@ -64,6 +62,7 @@ public class CadastrarActivity extends AppCompatActivity {
                     usuarioJson.put("email", eMail);
                     usuarioJson.put("nome", name);
                     usuarioJson.put("senha", password);
+                    usuarioJson.put("idOrganizacao", novaOrganizacao.getId());
 
 
                     System.out.println(usuarioJson.toString());
@@ -85,6 +84,8 @@ public class CadastrarActivity extends AppCompatActivity {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
                     e.printStackTrace();
+                }catch (Exception e){
+                    mostraMensagem("Impossível conectar com o servidor");
                 }
             }
         });
@@ -92,7 +93,7 @@ public class CadastrarActivity extends AppCompatActivity {
         campoEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                String emailAfterChange = pegaDominio(campoEmail);
+                pegaDominio(campoEmail);
 
             }
         });
@@ -115,76 +116,89 @@ public class CadastrarActivity extends AppCompatActivity {
     }
 
     private String pegaDominio(EditText campoEmail) {
-        String emailAfterChange = campoEmail.getText().toString().trim();
-        if(emailAfterChange.contains("@")){
-            String[] dominioArray = emailAfterChange.split("@", 2);
+        String emailInvalido = "Email invalido!";
+        String emailInserido = campoEmail.getText().toString().trim();
+        if(emailInserido.contains("@")){
+            String[] dominioArray = emailInserido.split("@", 2);
             System.out.println("DOMINIO: "+dominioArray[1]);
 
             if(dominioArray[1]!=null && dominioArray[0]!=null) {
                 if(dominioArray[1].contains(".") && dominioArray[1].length()>3){
                     try {
+                        requestOrganizacoes(dominioArray[1]);
 
-                        String lista = new HttpServiceOrganizacao().execute(dominioArray[1]).get();
-                        if(lista.contains(dominioArray[1])) {
-/*
-                            System.out.println(lista);
-*/
-                            try {
-                                JSONArray listaJson = new JSONArray(lista);
-                                List<Organizacao> listaDeOrganizacoes = new ArrayList<>();
-
-                                if(listaJson.length() > 0){
-                                    String[] organizacoes = new String[listaJson.length()];
-
-                                    for(int i = 0; i<listaJson.length(); i++){
-                                        JSONObject organizacaoObj = listaJson.getJSONObject(i);
-                                        if(organizacaoObj.has("id") &&
-                                                organizacaoObj.has("nome") &&
-                                                organizacaoObj.has("tipoOrganizacao") ){
-
-                                            int id = organizacaoObj.getInt("id");
-                                            String nome = organizacaoObj.getString("nome");
-                                            String tipoOrganizacao = organizacaoObj.getString("tipoOrganizacao");
-                                            novaOrganizacao.setId(id);
-                                            novaOrganizacao.setNome(nome);
-                                            novaOrganizacao.setTipoOrganizacao(tipoOrganizacao);
-
-
-                                            organizacoes[i]= nome;
-
-                                        }
-
-                                    }
-                                    alertaOrganizacoes(organizacoes);
-
-                                }
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-
+                    return dominioArray[1];
                 }
+                return emailInvalido;
             }
-
-            return "";
+            return emailInvalido;
         }
-        return emailAfterChange;
+        return emailInserido;
     }
 
-    private void alertaOrganizacoes(final String[] organizacoes) {
+    private void requestOrganizacoes(String dominio) throws ExecutionException, InterruptedException {
+        String lista = new HttpServiceOrganizacaoByDominio().execute(dominio).get();
+        if(lista.contains(dominio)) {
+
+            try {
+                JSONArray listaJson = new JSONArray(lista);
+                if(listaJson.length() > 0){
+                    String[] organizacoes = new String[listaJson.length()];
+                    int[] idOrganizacoes = new int[listaJson.length()];
+
+                    for(int i = 0; i<listaJson.length(); i++){
+                        System.out.println(listaJson);
+
+                        JSONObject organizacaoObj = listaJson.getJSONObject(i);
+                        if(organizacaoObj.has("id") &&
+                                organizacaoObj.has("nome") &&
+                                organizacaoObj.has("tipoOrganizacao") ){
+
+                            int id = organizacaoObj.getInt("id");
+                            String nome = organizacaoObj.getString("nome");
+                            String tipoOrganizacao = organizacaoObj.getString("tipoOrganizacao");
+                            novaOrganizacao.setId(id);
+                            novaOrganizacao.setNome(nome);
+                            novaOrganizacao.setTipoOrganizacao(tipoOrganizacao);
+
+                            System.out.println("Qnt Orgs: " + listaJson.length());
+
+                            if(listaJson.length()>1) {
+                                organizacoes[i] = nome;
+                                idOrganizacoes[i] = id;
+
+                                if(listaJson.length()==i+1){
+                                    alertaDeConflitoOrganizacoes(organizacoes, idOrganizacoes);
+                                }
+                            }else if (listaJson.length()==1) {
+                                listaDeOrganizacoes.add(novaOrganizacao);
+                            }
+                        }
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void alertaDeConflitoOrganizacoes(final String[] organizacoes, final int[] idOrganizacoes) {
+        final ImageButton warningBtn = findViewById(R.id.actitivy_cadastrar_warning);
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("É preciso selecionar sua organizacão");
         builder.setSingleChoiceItems(organizacoes, -1, new DialogInterface.OnClickListener() {
 
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // TODO Auto-generated method stub
+            public void onClick(DialogInterface dialog, int i) {
+                novaOrganizacao.setNome(organizacoes[i]);
+                novaOrganizacao.setId(idOrganizacoes[i]);
+                listaDeOrganizacoes.add(novaOrganizacao);
 
             }
         });
@@ -192,25 +206,28 @@ public class CadastrarActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                System.out.println("ID da organizacao escolhido: "+novaOrganizacao.getId());
+                System.out.println("Nome da organizacao escolhida: "+novaOrganizacao.getNome());
 
+                warningBtn.setVisibility(View.GONE);
 
+                marcouOrganizacao = true;
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                ImageButton warningBtn = findViewById(R.id.actitivy_cadastrar_warning);
-                warningBtn.setVisibility(VISIBLE);
-                warningBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
 
-                        alertaOrganizacoes(organizacoes);
+                if(marcouOrganizacao==false) {
+                    warningBtn.setVisibility(VISIBLE);
+                    warningBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 
-                    }
-                });
-
-
+                            alertaDeConflitoOrganizacoes(organizacoes, idOrganizacoes);
+                        }
+                    });
+                }
             }
         });
 

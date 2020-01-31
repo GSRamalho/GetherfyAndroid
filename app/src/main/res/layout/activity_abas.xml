@@ -26,11 +26,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/activity_lista_salas_toolbar_nomeDaEmpresa"
+            android:id="@+id/activity_lista_salas_toolbar_nomeDaOrganizacao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Nome da Empresa"
+            android:text="Organizacao"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"

@@ -1,5 +1,7 @@
 package com.guilherme.getherfy.activity;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,11 +12,20 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+import com.guilherme.getherfy.httpService.HttpServiceGetUsuario;
 import com.guilherme.getherfy.httpService.HttpServiceLogin;
+import com.guilherme.getherfy.httpService.HttpServiceOrganizacaoById;
+import com.guilherme.getherfy.organizacao.model.Organizacao;
 import com.guilherme.presentation.R;
 
-public class LoginActivity extends AppCompatActivity {
+import org.json.JSONObject;
 
+
+public class LoginActivity extends AppCompatActivity {
+    Gson gson = new Gson();
+    JSONObject usuarioObj;
+    JSONObject organizacaoObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,20 +49,43 @@ public class LoginActivity extends AppCompatActivity {
                     mostraMensagem(mensagem);
 
                     if(mensagem.equalsIgnoreCase("Login efetuado com sucesso!")){
+
+                        final Account account = new Account(emailString, "com.guilherme.getherfy");
+                        AccountManager accManager = AccountManager.get(getApplicationContext());
+                        accManager.addAccountExplicitly(account, senhaString, null);
+
+//                      Account[] recupera = accManager.getAccountsByType("Account");
+//                       System.out.println(recupera[0].name);
+
+                        System.out.println(accManager.getAccounts());
                         startActivity(new Intent(LoginActivity.this, AbasActivity.class));
 
+                        String usuario = (new HttpServiceGetUsuario().execute(emailString).get());
+                        System.out.println(usuario);
+                        usuario = gson.toJson(usuarioObj);
+
+                        if(usuarioObj.has("idOrganizacao")){
+                            int idOrg = usuarioObj.getInt("idOrganizacao");
+                            String idString = Integer.toString(idOrg);
+                            String organizacao = (new HttpServiceOrganizacaoById().execute(idString).get());
+                            organizacao = gson.toJson(organizacaoObj);
+
+                            String organizacaoNome = organizacaoObj.getString("nome");
+                            System.out.println("Organizacao"+organizacao);
+
+                            Organizacao org = new Organizacao();
+                            org.setNome(organizacaoNome);
+
+                        }
+
                     }
-
-
                 }
                 catch (Exception e)
                 {
-
+                    e.printStackTrace();
                 }
-
             }
         });
-
         voltarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

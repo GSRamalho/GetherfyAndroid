@@ -31,8 +31,9 @@
 
     <EditText
         android:id="@+id/activity_cadastrar_email"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
         android:ems="10"
         android:hint="Insira seu email"
         android:inputType="textEmailAddress"
@@ -44,11 +45,12 @@
 
     <EditText
         android:id="@+id/activity_cadastrar_nome"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:capitalize="words"
         android:ems="10"
         android:hint="Insira seu nome"
+        android:layout_marginHorizontal="40dp"
         android:inputType="textPersonName|textCapWords"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,16 +61,17 @@
 
     <EditText
         android:id="@+id/activity_cadastrar_senha"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:layout_marginHorizontal="40dp"
         android:hint="Insira uma senha"
         android:inputType="textPersonName|textWebPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_cadastrar_email"
-        app:layout_constraintVertical_bias="0.205" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_cadastrar_nome"
+        app:layout_constraintVertical_bias="0.04000002" />
 
     <Button
         android:id="@+id/activity_cadastrar_btnCadastrar"
@@ -82,8 +85,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_cadastrar_email"
-        app:layout_constraintVertical_bias="0.56" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_cadastrar_senha"
+        app:layout_constraintVertical_bias="0.4" />
 
     <ImageView
         android:id="@+id/activity_cadastrar_logo"
@@ -95,13 +98,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/gatherfy2" />
 
     <TextView
         android:id="@+id/activity_cadastrar_linkLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/linkLogin"
+
         android:textColor="#0A1FA3"
         android:textSize="18dp"
         android:textStyle="bold"

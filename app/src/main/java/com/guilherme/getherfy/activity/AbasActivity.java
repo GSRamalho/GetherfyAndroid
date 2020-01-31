@@ -1,12 +1,14 @@
 package com.guilherme.getherfy.activity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.guilherme.getherfy.activity.fragment.ListaReservasFragment;
 import com.guilherme.getherfy.activity.fragment.ListaSalasFragment;
+import com.guilherme.getherfy.organizacao.model.Organizacao;
 import com.guilherme.presentation.R;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
@@ -16,13 +18,14 @@ public class AbasActivity extends AppCompatActivity{
 
     private SmartTabLayout smartTabLayout;
     private ViewPager viewPager;
-
+    Organizacao organizacao = new Organizacao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_abas);
 
+        TextView nomeEmpresa = findViewById(R.id.activity_lista_salas_toolbar_nomeDaOrganizacao);
 
         smartTabLayout = findViewById(R.id.viewPagerTab);
         viewPager = findViewById(R.id.viewPager);
