@@ -1,8 +1,8 @@
 package com.guilherme.getherfy.activity;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,10 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
-import com.guilherme.getherfy.httpService.HttpServiceGetUsuario;
 import com.guilherme.getherfy.httpService.HttpServiceLogin;
-import com.guilherme.getherfy.httpService.HttpServiceOrganizacaoById;
-import com.guilherme.getherfy.organizacao.model.Organizacao;
 import com.guilherme.presentation.R;
 
 import org.json.JSONObject;
@@ -27,72 +24,59 @@ public class LoginActivity extends AppCompatActivity {
     JSONObject usuarioObj;
     JSONObject organizacaoObj;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ImageButton voltarBtn = findViewById(R.id.activity_login_voltarBtn);
-        final TextView email = findViewById(R.id.activity_login_email);
-        final TextView senha = findViewById(R.id.activity_cadastrar_senha);
+
 
         Button loginBtn = findViewById(R.id.activity_cadastrar_btnLogin);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try
-                {
+                try {
+
+                    TextView email = findViewById(R.id.activity_login_email);
+                    TextView senha = findViewById(R.id.activity_login_senha);
                     String emailString = email.getText().toString().trim();
                     String senhaString = senha.getText().toString().trim();
 
                     String mensagem = (new HttpServiceLogin().execute(emailString, senhaString).get());
                     mostraMensagem(mensagem);
 
-                    if(mensagem.equalsIgnoreCase("Login efetuado com sucesso!")){
+                   if(mensagem.equalsIgnoreCase("Login efetuado com sucesso!")){
+                       SharedPreferences pref = getApplicationContext().getSharedPreferences("LoginPref", 0); // 0 - for private mode
+                       SharedPreferences.Editor editor = pref.edit();
 
-                        final Account account = new Account(emailString, "com.guilherme.getherfy");
-                        AccountManager accManager = AccountManager.get(getApplicationContext());
-                        accManager.addAccountExplicitly(account, senhaString, null);
+                       editor.putString("email", emailString);
+                       editor.putString("senha", senhaString);
 
-//                      Account[] recupera = accManager.getAccountsByType("Account");
-//                       System.out.println(recupera[0].name);
+                       pref.getString("email", null); // getting String
 
-                        System.out.println(accManager.getAccounts());
-                        startActivity(new Intent(LoginActivity.this, AbasActivity.class));
+                       editor.commit();
 
-                        String usuario = (new HttpServiceGetUsuario().execute(emailString).get());
-                        System.out.println(usuario);
-                        usuario = gson.toJson(usuarioObj);
+                       System.out.println(pref.getString("email", null));
 
-                        if(usuarioObj.has("idOrganizacao")){
-                            int idOrg = usuarioObj.getInt("idOrganizacao");
-                            String idString = Integer.toString(idOrg);
-                            String organizacao = (new HttpServiceOrganizacaoById().execute(idString).get());
-                            organizacao = gson.toJson(organizacaoObj);
+                   }
 
-                            String organizacaoNome = organizacaoObj.getString("nome");
-                            System.out.println("Organizacao"+organizacao);
 
-                            Organizacao org = new Organizacao();
-                            org.setNome(organizacaoNome);
-
-                        }
-
-                    }
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
+
         });
+
+
         voltarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, PrimeiraTelaActivity.class));
             }
         });
-
     }
     public void mostraMensagem(String mensagem) {
         Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show();

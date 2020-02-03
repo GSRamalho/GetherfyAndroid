@@ -50,7 +50,7 @@ public class CadastrarActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 EditText campoNome = findViewById(R.id.activity_cadastrar_nome);
-                EditText campoSenha= findViewById(R.id.activity_cadastrar_senha);
+                EditText campoSenha= findViewById(R.id.activity_login_senha);
 
                 String eMail = campoEmail.getText().toString().trim();
                 String name = campoNome.getText().toString().trim();

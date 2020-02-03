@@ -60,7 +60,7 @@
         app:layout_constraintVertical_bias="0.044" />
 
     <EditText
-        android:id="@+id/activity_cadastrar_senha"
+        android:id="@+id/activity_login_senha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -85,7 +85,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_cadastrar_senha"
+        app:layout_constraintTop_toBottomOf="@+id/activity_login_senha"
         app:layout_constraintVertical_bias="0.4" />
 
     <ImageView
