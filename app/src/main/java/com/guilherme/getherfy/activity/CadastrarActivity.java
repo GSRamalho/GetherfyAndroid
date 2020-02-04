@@ -110,6 +110,7 @@ public class CadastrarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CadastrarActivity.this, PrimeiraTelaActivity.class));
+                finish();
             }
         });
 
@@ -165,6 +166,7 @@ public class CadastrarActivity extends AppCompatActivity {
                             novaOrganizacao.setId(id);
                             novaOrganizacao.setNome(nome);
                             novaOrganizacao.setTipoOrganizacao(tipoOrganizacao);
+
 
                             System.out.println("Qnt Orgs: " + listaJson.length());
 
@@ -241,6 +243,12 @@ public class CadastrarActivity extends AppCompatActivity {
 
     private void chamaActivityLogin() {
         startActivity(new Intent(CadastrarActivity.this, LoginActivity.class));
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
         finish();
     }
 }

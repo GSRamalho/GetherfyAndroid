@@ -1,9 +1,9 @@
 package com.guilherme.getherfy.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -12,25 +12,23 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
 import com.guilherme.getherfy.httpService.HttpServiceLogin;
+import com.guilherme.getherfy.organizacao.model.Organizacao;
+import com.guilherme.getherfy.usuario.model.Usuario;
 import com.guilherme.presentation.R;
 
 import org.json.JSONObject;
 
 
 public class LoginActivity extends AppCompatActivity {
-    Gson gson = new Gson();
-    JSONObject usuarioObj;
-    JSONObject organizacaoObj;
 
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ImageButton voltarBtn = findViewById(R.id.activity_login_voltarBtn);
-
 
         Button loginBtn = findViewById(R.id.activity_cadastrar_btnLogin);
 
@@ -39,31 +37,69 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
 
-                    TextView email = findViewById(R.id.activity_login_email);
-                    TextView senha = findViewById(R.id.activity_login_senha);
-                    String emailString = email.getText().toString().trim();
-                    String senhaString = senha.getText().toString().trim();
+                    TextView emailEt = findViewById(R.id.activity_login_email);
+                    TextView senhaEt = findViewById(R.id.activity_login_senha);
+                    final String emailString = emailEt.getText().toString().trim();
+                    final String senhaString = senhaEt.getText().toString().trim();
 
-                    String mensagem = (new HttpServiceLogin().execute(emailString, senhaString).get());
-                    mostraMensagem(mensagem);
+                    String usuarioLogado = new HttpServiceLogin().execute(emailString, senhaString).get();
+                    //Toast.makeText(getApplicationContext(),usuarioLogado,Toast.LENGTH_LONG).show();
 
-                   if(mensagem.equalsIgnoreCase("Login efetuado com sucesso!")){
-                       SharedPreferences pref = getApplicationContext().getSharedPreferences("LoginPref", 0); // 0 - for private mode
-                       SharedPreferences.Editor editor = pref.edit();
+                    if (usuarioLogado.length() > 0) {
+                        Toast.makeText(getApplicationContext(), "Login realizado com sucesso", Toast.LENGTH_LONG).show();
 
-                       editor.putString("email", emailString);
-                       editor.putString("senha", senhaString);
+                        JSONObject usuarioJSON = new JSONObject(usuarioLogado);
 
-                       pref.getString("email", null); // getting String
+                        if (usuarioJSON.has("email") && usuarioJSON.has("id") && usuarioJSON.has("nome") && usuarioJSON.has("idOrganizacao")) {
+                            int id = usuarioJSON.getInt("id");
+                            String nome = usuarioJSON.getString("nome");
+                            String email = usuarioJSON.getString("email");
 
-                       editor.commit();
+                            JSONObject organizacao = usuarioJSON.getJSONObject("idOrganizacao");
+                            String nomeOrganizacao = organizacao.getString("nome");
+                            String tipoOrganizacao = organizacao.getString("tipoOrganizacao");
+                            int idOrganizacao = organizacao.getInt("id");
 
-                       System.out.println(pref.getString("email", null));
 
-                   }
+                            Usuario usuarioAuth = new Usuario();
+                            usuarioAuth.setId(id);
+                            usuarioAuth.setNome(nome);
+                            usuarioAuth.setEmail(email);
+                            usuarioAuth.setIdOrganizacao(idOrganizacao);
+
+                            Organizacao org = new Organizacao();
+                            org.setId(idOrganizacao);
+                            org.setNome(nomeOrganizacao);
+                            org.setTipoOrganizacao(tipoOrganizacao);
+
+                            preferences = getSharedPreferences("USER_LOGIN", 0);
+
+                            SharedPreferences.Editor editor = preferences.edit();
+
+                            editor.putString("userEmail", email);
+                            editor.putString("userName", nome);
+                            editor.putString("userId", Integer.toString(id));
+                            editor.putString("userIdOrganizacao", Integer.toString(idOrganizacao));
+                            editor.putString("userNomeEmpresa", nomeOrganizacao);
+                            editor.putString("userTipoOrganizacao", tipoOrganizacao);
+                            editor.commit();
+                        }
+                        System.out.println(preferences.getString("userEmail", null));
+                        System.out.println(preferences.getString("userName", null));
+                        System.out.println(preferences.getString("userId", null));
+                        System.out.println(preferences.getString("userIdOrganizacao", null));
+                        System.out.println(preferences.getString("userNomeEmpresa", null));
+                        System.out.println(preferences.getString("userTipoEmpresa", null));
+
+                        startActivity(new Intent(LoginActivity.this, AbasActivity.class));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Login inválido!", Toast.LENGTH_SHORT).show();
+                    }
 
 
                 } catch (Exception e) {
+
+                    Toast.makeText(getApplicationContext(), " inválido", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }
@@ -75,11 +111,25 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, PrimeiraTelaActivity.class));
+                finish();
             }
         });
     }
+
+    private void salvarCredenciais(Usuario u, Organizacao o) {
+
+
+
+    }
+
     public void mostraMensagem(String mensagem) {
         Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }
 

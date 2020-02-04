@@ -1,5 +1,6 @@
 package com.guilherme.getherfy.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -20,12 +21,17 @@ public class AbasActivity extends AppCompatActivity{
     private ViewPager viewPager;
     Organizacao organizacao = new Organizacao();
 
+    SharedPreferences preferences;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_abas);
+        preferences = getSharedPreferences("USER_LOGIN", 0);
 
         TextView nomeEmpresa = findViewById(R.id.activity_lista_salas_toolbar_nomeDaOrganizacao);
+        nomeEmpresa.setText("Em "+preferences.getString("userNomeEmpresa", null));
 
         smartTabLayout = findViewById(R.id.viewPagerTab);
         viewPager = findViewById(R.id.viewPager);

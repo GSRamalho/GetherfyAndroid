@@ -16,7 +16,7 @@ public class HttpServiceLogin extends AsyncTask<String, Void, String>
     {
 
 
-        String urlWS = "http://172.30.248.132:8080/ReservaDeSala/rest/usuario/login/";
+        String urlWS = "http://172.30.248.132:8080/ReservaDeSala/rest/usuario/loginV2/";
 
         StringBuilder result = new StringBuilder();
         try

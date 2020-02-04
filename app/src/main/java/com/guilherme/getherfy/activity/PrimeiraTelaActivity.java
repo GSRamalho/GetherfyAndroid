@@ -3,6 +3,7 @@ package com.guilherme.getherfy.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -10,9 +11,11 @@ import android.widget.TextView;
 import com.guilherme.presentation.R;
 
 public class PrimeiraTelaActivity extends AppCompatActivity {
-
+    SharedPreferences preferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        verificaLogin();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_primeira_tela);
 
@@ -34,5 +37,14 @@ public class PrimeiraTelaActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void verificaLogin() {
+        preferences = getSharedPreferences("USER_LOGIN", 0);
+
+        if (preferences.getString("userEmail", null)!=null){
+            startActivity(new Intent(PrimeiraTelaActivity.this, AbasActivity.class));
+            finish();
+        }
     }
 }
