@@ -10,9 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.guilherme.getherfy.activity.LoginActivity;
 import com.guilherme.presentation.R;
 import com.guilherme.getherfy.activity.SalaInfoActivity;
 import com.guilherme.getherfy.sala.adapter.ListaSalasAdapter;

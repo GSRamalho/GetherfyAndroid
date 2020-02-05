@@ -12,6 +12,7 @@ import com.guilherme.presentation.R;
 
 public class PrimeiraTelaActivity extends AppCompatActivity {
     SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         verificaLogin();
@@ -42,7 +43,7 @@ public class PrimeiraTelaActivity extends AppCompatActivity {
     private void verificaLogin() {
         preferences = getSharedPreferences("USER_LOGIN", 0);
 
-        if (preferences.getString("userEmail", null)!=null){
+        if (preferences.getString("userEmail", null) != null) {
             startActivity(new Intent(PrimeiraTelaActivity.this, AbasActivity.class));
             finish();
         }

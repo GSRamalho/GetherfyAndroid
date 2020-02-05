@@ -3,7 +3,6 @@ package com.guilherme.getherfy.activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -43,8 +42,6 @@ public class LoginActivity extends AppCompatActivity {
                     final String senhaString = senhaEt.getText().toString().trim();
 
                     String usuarioLogado = new HttpServiceLogin().execute(emailString, senhaString).get();
-                    //Toast.makeText(getApplicationContext(),usuarioLogado,Toast.LENGTH_LONG).show();
-
                     if (usuarioLogado.length() > 0) {
                         Toast.makeText(getApplicationContext(), "Login realizado com sucesso", Toast.LENGTH_LONG).show();
 
@@ -72,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                             org.setNome(nomeOrganizacao);
                             org.setTipoOrganizacao(tipoOrganizacao);
 
+                            //Refatorar
                             preferences = getSharedPreferences("USER_LOGIN", 0);
 
                             SharedPreferences.Editor editor = preferences.edit();
@@ -115,17 +113,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void salvarCredenciais(Usuario u, Organizacao o) {
-
-
-
-    }
-
-    public void mostraMensagem(String mensagem) {
-        Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show();
-    }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

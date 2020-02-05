@@ -47,7 +47,6 @@
         android:id="@+id/activity_cadastrar_nome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:capitalize="words"
         android:ems="10"
         android:hint="Insira seu nome"
         android:layout_marginHorizontal="40dp"

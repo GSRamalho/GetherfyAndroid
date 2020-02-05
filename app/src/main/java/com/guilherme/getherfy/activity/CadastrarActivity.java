@@ -50,7 +50,7 @@ public class CadastrarActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 EditText campoNome = findViewById(R.id.activity_cadastrar_nome);
-                EditText campoSenha= findViewById(R.id.activity_login_senha);
+                EditText campoSenha = findViewById(R.id.activity_login_senha);
 
                 String eMail = campoEmail.getText().toString().trim();
                 String name = campoNome.getText().toString().trim();
@@ -73,7 +73,7 @@ public class CadastrarActivity extends AppCompatActivity {
                     String mensagem = (new HttpServiceCadastro().execute(novoUsuarioEncoded).get());
                     mostraMensagem(mensagem);
 
-                    if(mensagem.equalsIgnoreCase("Usuário criado com sucesso")) {
+                    if (mensagem.equalsIgnoreCase("Usuário criado com sucesso")) {
                         startActivity(new Intent(CadastrarActivity.this, LoginActivity.class));
                     }
                 } catch (JSONException e) {
@@ -84,7 +84,7 @@ public class CadastrarActivity extends AppCompatActivity {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
                     e.printStackTrace();
-                }catch (Exception e){
+                } catch (Exception e) {
                     mostraMensagem("Impossível conectar com o servidor");
                 }
             }
@@ -119,12 +119,12 @@ public class CadastrarActivity extends AppCompatActivity {
     private String pegaDominio(EditText campoEmail) {
         String emailInvalido = "Email invalido!";
         String emailInserido = campoEmail.getText().toString().trim();
-        if(emailInserido.contains("@")){
+        if (emailInserido.contains("@")) {
             String[] dominioArray = emailInserido.split("@", 2);
-            System.out.println("DOMINIO: "+dominioArray[1]);
+            System.out.println("DOMINIO: " + dominioArray[1]);
 
-            if(dominioArray[1]!=null && dominioArray[0]!=null) {
-                if(dominioArray[1].contains(".") && dominioArray[1].length()>3){
+            if (dominioArray[1] != null && dominioArray[0] != null) {
+                if (dominioArray[1].contains(".") && dominioArray[1].length() > 3) {
                     try {
                         requestOrganizacoes(dominioArray[1]);
 
@@ -144,21 +144,22 @@ public class CadastrarActivity extends AppCompatActivity {
 
     private void requestOrganizacoes(String dominio) throws ExecutionException, InterruptedException {
         String lista = new HttpServiceOrganizacaoByDominio().execute(dominio).get();
-        if(lista.contains(dominio)) {
+        if (lista.contains(dominio)) {
 
             try {
                 JSONArray listaJson = new JSONArray(lista);
-                if(listaJson.length() > 0){
+                if (listaJson.length() > 0) {
                     String[] organizacoes = new String[listaJson.length()];
+
                     int[] idOrganizacoes = new int[listaJson.length()];
 
-                    for(int i = 0; i<listaJson.length(); i++){
+                    for (int i = 0; i < listaJson.length(); i++) {
                         System.out.println(listaJson);
 
                         JSONObject organizacaoObj = listaJson.getJSONObject(i);
-                        if(organizacaoObj.has("id") &&
+                        if (organizacaoObj.has("id") &&
                                 organizacaoObj.has("nome") &&
-                                organizacaoObj.has("tipoOrganizacao") ){
+                                organizacaoObj.has("tipoOrganizacao")) {
 
                             int id = organizacaoObj.getInt("id");
                             String nome = organizacaoObj.getString("nome");
@@ -170,14 +171,14 @@ public class CadastrarActivity extends AppCompatActivity {
 
                             System.out.println("Qnt Orgs: " + listaJson.length());
 
-                            if(listaJson.length()>1) {
+                            if (listaJson.length() > 1) {
                                 organizacoes[i] = nome;
                                 idOrganizacoes[i] = id;
 
-                                if(listaJson.length()==i+1){
+                                if (listaJson.length() == i + 1) {
                                     alertaDeConflitoOrganizacoes(organizacoes, idOrganizacoes);
                                 }
-                            }else if (listaJson.length()==1) {
+                            } else if (listaJson.length() == 1) {
                                 listaDeOrganizacoes.add(novaOrganizacao);
                             }
                         }
@@ -208,8 +209,8 @@ public class CadastrarActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                System.out.println("ID da organizacao escolhido: "+novaOrganizacao.getId());
-                System.out.println("Nome da organizacao escolhida: "+novaOrganizacao.getNome());
+                System.out.println("ID da organizacao escolhido: " + novaOrganizacao.getId());
+                System.out.println("Nome da organizacao escolhida: " + novaOrganizacao.getNome());
 
                 warningBtn.setVisibility(View.GONE);
 
@@ -220,7 +221,7 @@ public class CadastrarActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                if(marcouOrganizacao==false) {
+                if (marcouOrganizacao == false) {
                     warningBtn.setVisibility(VISIBLE);
                     warningBtn.setOnClickListener(new View.OnClickListener() {
                         @Override

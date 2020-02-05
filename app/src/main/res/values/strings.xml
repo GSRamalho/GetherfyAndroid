@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Getherfy</string>
     <string name="linkLogin">Entrar</string>
+    <string name="Logout">Logout</string>
     <string name="linkCadastrar">Não possuo uma conta ainda</string>
     <string name="warningMessage">Existe mais de uma organizacaoutilizando esse dominio. Por favor, selecione qual a sua</string>
 
