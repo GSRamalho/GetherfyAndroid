@@ -90,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                         System.out.println(preferences.getString("userTipoEmpresa", null));
 
                         startActivity(new Intent(LoginActivity.this, AbasActivity.class));
+                        finish();
                     } else {
                         Toast.makeText(getApplicationContext(), "Login inválido!", Toast.LENGTH_SHORT).show();
                     }
