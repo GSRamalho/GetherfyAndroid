@@ -10,23 +10,42 @@ public class Sala {
     private boolean possuiMultimidia;
     private double area;
     private boolean possuiAcessiblidade;
-    private String localidade;
+    private String localizacao;
     private boolean ativa;
 
-    public Sala(
-            int id, int idOrganizacao, String nome, int capacidade,
-            boolean possuiArcon, boolean possuiMultimidia,
-            double area, boolean possuiAcessiblidade, String localidade, boolean ativa) {
-
+    public Sala() {
         this.id = id;
+        this.idOrganizacao = idOrganizacao;
         this.nome = nome;
         this.capacidade = capacidade;
         this.possuiArcon = possuiArcon;
         this.possuiMultimidia = possuiMultimidia;
         this.area = area;
-        this.localidade = localidade;
+        this.possuiAcessiblidade = possuiAcessiblidade;
+        this.localizacao = localizacao;
         this.ativa = ativa;
     }
+
+    public int getIdOrganizacao() {
+        return idOrganizacao;
+    }
+
+    public void setIdOrganizacao(int idOrganizacao) {
+        this.idOrganizacao = idOrganizacao;
+    }
+
+    public boolean isPossuiArcon() {
+        return possuiArcon;
+    }
+
+    public boolean isPossuiMultimidia() {
+        return possuiMultimidia;
+    }
+
+    public boolean isPossuiAcessiblidade() {
+        return possuiAcessiblidade;
+    }
+
 
     public boolean possuiAcessiblidade() {
         return possuiAcessiblidade;
@@ -35,6 +54,7 @@ public class Sala {
     public void setPossuiAcessiblidade(boolean possuiAcessiblidade) {
         this.possuiAcessiblidade = possuiAcessiblidade;
     }
+
     public boolean possuiArcon() {
         return possuiArcon;
     }
@@ -83,12 +103,12 @@ public class Sala {
         this.nome = nome;
     }
 
-    public String getLocalidade() {
-        return localidade;
+    public String getLocalizacao() {
+        return localizacao;
     }
 
-    public void setLocalidade(String localidade) {
-        this.localidade = localidade;
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
     }
 
     public int getCapacidade() {

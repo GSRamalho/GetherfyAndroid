@@ -47,7 +47,7 @@ public class ListaSalasAdapter extends BaseAdapter {
 
         TextView enderecoDaSala = viewCriada.findViewById(R.id.item_sala_cardview_endereco);
 
-        enderecoDaSala.setText(sala.getLocalidade());
+        enderecoDaSala.setText(sala.getLocalizacao());
 
         TextView capacidadeDaSala = viewCriada.findViewById(R.id.item_sala_cardview_capacidade);
         capacidadeDaSala.setText(sala.getCapacidade()+ " assentos");
