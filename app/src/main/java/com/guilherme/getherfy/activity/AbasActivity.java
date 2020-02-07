@@ -27,8 +27,6 @@ import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
 import java.lang.reflect.Method;
 
-import static com.guilherme.presentation.R.menu.layout_perfil_menu;
-
 public class AbasActivity extends AppCompatActivity {
 
     private SmartTabLayout smartTabLayout;

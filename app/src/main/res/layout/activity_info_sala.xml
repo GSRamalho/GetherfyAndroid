@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context="com.guilherme.getherfy.activity.SalaInfoActivity">
 
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context="com.guilherme.getherfy.activity.MapsActivity" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/activity_info_sala_toolbar"
         android:layout_width="match_parent"
@@ -14,6 +25,20 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_info_sala_toolbar_nomeDaOrganizacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Organizacao"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_info_sala_toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/activity_info_sala_toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,167 +53,201 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/activity_info_sala_toolbar" />
 
+
+    <TextView
+        android:id="@+id/info_sala_nome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:background="@android:drawable/screen_background_dark_transparent"
+        android:gravity="center"
+        android:text="Nome da sala"
+        android:textAlignment="gravity"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/activity_info_sala_cardview"
+        tools:layout_editor_absoluteX="12dp" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/activity_info_sala_cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
+        android:visibility="visible"
         app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/activity_reserva_imagem"
-        app:layout_constraintVertical_bias="0.52">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#B0F8F8F8">
 
-            <TextView
-                android:id="@+id/activity_reserva_textomultimidia"
+            <ImageView
+                android:id="@+id/activity_reserva_imagem"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#80FFCA00"
-                android:padding="8dp"
-                android:text="Multimidia:"
-                android:textColor="@android:color/black"
+                android:layout_height="110dp"
+                android:layout_marginBottom="16dp"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textoarcon"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/activity_reserva_textoativa"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#C9FFCA00"
-                android:padding="8dp"
-                android:text="Ativa:"
-                android:textColor="#000000"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textomultimidia"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/activity_reserva_textolocal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#80FFCA00"
-                android:padding="8dp"
-                android:text="Localidade:"
-
-                android:textColor="#000000"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textonome"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/activity_reserva_area"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#C9FFCA00"
-                android:padding="8dp"
-                android:text="Area:"
-                android:textColor="#000000"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textolocal"
-                app:layout_constraintVertical_bias="0.0"
-                tools:layout_editor_absoluteX="0dp" />
-
-            <TextView
-                android:id="@+id/activity_reserva_textonome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#C9FFCA00"
-                android:padding="8dp"
-                android:text="Nome"
-                android:textColor="#020000"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.333"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/sala_de_reuniao" />
 
             <TextView
-                android:id="@+id/activity_reserva_textocapacidade"
+                android:id="@+id/info_sala_localText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:background="#80FFCA00"
-                android:padding="8dp"
-                android:text="Capacidade: "
-                android:textColor="#000000"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:text="Local"
+                android:textAlignment="gravity"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textolocal"
-                app:layout_constraintVertical_bias="0.02" />
+                app:layout_constraintTop_toBottomOf="@+id/activity_reserva_imagem" />
 
-            <TextView
-                android:id="@+id/activity_reserva_textoarcon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#C9FFCA00"
-                android:padding="8dp"
-                android:text="Ar Condicionado: "
-                android:textColor="#000000"
+            <ImageView
+                android:id="@+id/activity_info_sala_accessibilityImageView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.952"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textocapacidade"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="@+id/activity_reserva_imagem"
+                app:layout_constraintVertical_bias="0.45"
+                app:srcCompat="@mipmap/ic_accesibility" />
+
+            <ImageView
+                android:id="@+id/accessibility_booleanIcon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:layout_constraintBottom_toBottomOf="@+id/activity_info_sala_accessibilityImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.99"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.85"
+                app:srcCompat="@mipmap/ic_has_accessibility" />
+
+            <ImageView
+                android:id="@+id/multimidia_booleanIcon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:layout_constraintBottom_toBottomOf="@+id/info_sala_multimidiaIcon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.02"
+                app:layout_constraintStart_toEndOf="@+id/info_sala_multimidiaIcon"
+                app:layout_constraintTop_toBottomOf="@+id/info_sala_areaIcon"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@mipmap/ic_has_accessibility" />
+
+            <ImageView
+                android:id="@+id/arcon_booleanIcon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:layout_constraintBottom_toBottomOf="@+id/info_sala_arconIcon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.021"
+                app:layout_constraintStart_toEndOf="@+id/info_sala_arconIcon"
+                app:layout_constraintTop_toBottomOf="@+id/info_sala_multimidiaIcon"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@mipmap/ic_has_accessibility" />
+
+            <ImageView
+                android:id="@+id/info_sala_capacidadeIcon"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/info_sala_localText"
+                app:srcCompat="@mipmap/ic_seats" />
+
+            <ImageView
+                android:id="@+id/info_sala_areaIcon"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                app:layout_constraintStart_toStartOf="@+id/info_sala_capacidadeIcon"
+                app:layout_constraintTop_toBottomOf="@+id/info_sala_capacidadeIcon"
+                app:srcCompat="@mipmap/ic_area" />
+
+            <ImageView
+                android:id="@+id/info_sala_multimidiaIcon"
+                android:layout_width="33dp"
+                android:layout_height="30dp"
+                app:layout_constraintStart_toStartOf="@+id/info_sala_areaIcon"
+                app:layout_constraintTop_toBottomOf="@+id/info_sala_areaIcon"
+                app:srcCompat="@mipmap/ic_multimidia" />
+
+            <ImageView
+                android:id="@+id/info_sala_arconIcon"
+                android:layout_width="33dp"
+                android:layout_height="30dp"
+                app:layout_constraintStart_toStartOf="@+id/info_sala_multimidiaIcon"
+                app:layout_constraintTop_toBottomOf="@+id/info_sala_multimidiaIcon"
+                app:srcCompat="@mipmap/ic_arcon" />
 
             <TextView
-                android:id="@+id/activity_reserva_textoacessibilidade"
-                android:layout_width="match_parent"
+                android:id="@+id/info_sala_capacidadeText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#80FFCA00"
-                android:padding="8dp"
-                android:text="Possui acessibilidade:"
+                android:text="8 lugares"
                 android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/info_sala_capacidadeIcon"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activity_reserva_textoativa" />
+                app:layout_constraintHorizontal_bias="0.02"
+                app:layout_constraintStart_toEndOf="@+id/info_sala_capacidadeIcon"
+                app:layout_constraintTop_toTopOf="@+id/info_sala_capacidadeIcon" />
 
+            <TextView
+                android:id="@+id/info_sala_capacidadeText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5m²"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/multimidia_booleanIcon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.021"
+                app:layout_constraintStart_toEndOf="@+id/info_sala_areaIcon"
+                app:layout_constraintTop_toBottomOf="@+id/info_sala_capacidadeText" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/activity_reserva_imagem"
-        android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/activity_info_sala_novaReservaBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        app:layout_constraintTop_toBottomOf="@+id/activity_info_sala_toolbar"
-        app:srcCompat="@drawable/sala_de_reuniao" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:clickable="true"
+        app:backgroundTint="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96"
+        app:srcCompat="@drawable/ic_nova_reserva" />
 
-        <Button
-            android:id="@+id/activity_info_salar_reservarBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/botao_reservar"
-            android:text="Reservar"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
+    <ImageButton
+        android:id="@+id/info_sala_map_down"
+        android:layout_width="58dp"
+        android:layout_height="46dp"
+        android:background="@null"
+        app:layout_constraintBottom_toTopOf="@+id/info_sala_nome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.033"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_info_sala_toolbar"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@mipmap/ic_map_down" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

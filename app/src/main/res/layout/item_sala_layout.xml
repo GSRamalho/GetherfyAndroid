@@ -40,7 +40,7 @@
                 android:id="@+id/item_sala_cardview_endereco"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="#FFC107"
+                android:background="@android:drawable/screen_background_dark_transparent"
                 android:gravity="center"
                 android:text="Endereco"
                 android:textColor="#FFFFFF"
