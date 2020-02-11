@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="300dp"
+    android:layout_height="500dp"
+    android:layout_gravity="center"
+    android:background="@drawable/reserva_bg"
+    android:foreground="@null"
+    app:layout_constraintCircleRadius="10dp">
+
+    <ImageButton
+        android:id="@+id/reservar_popup_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.158"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_date_picker" />
+
+    <ImageButton
+        android:id="@+id/reservar_popup_start_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/reservar_popup_data"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintStart_toEndOf="@+id/reservar_popup_data"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@mipmap/ic_time_start_picker" />
+
+    <ImageButton
+        android:id="@+id/reservar_popup_end_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/reservar_popup_start_time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toEndOf="@+id/reservar_popup_start_time"
+        app:layout_constraintTop_toTopOf="@+id/reservar_popup_start_time"
+        app:layout_constraintVertical_bias="0.091"
+        app:srcCompat="@mipmap/ic_time_end_picker" />
+
+    <TextView
+        android:id="@+id/reservar_popup_diaTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00/00/00"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/reservar_popup_das"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="das"
+        app:layout_constraintEnd_toEndOf="@+id/reservar_popup_diaTxt"
+        app:layout_constraintStart_toStartOf="@+id/reservar_popup_diaTxt"
+        app:layout_constraintTop_toBottomOf="@+id/reservar_popup_diaTxt" />
+
+    <TextView
+        android:id="@+id/reservar_popup_hora_inicioTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/reservar_popup_das"
+        app:layout_constraintStart_toStartOf="@+id/reservar_popup_das"
+        app:layout_constraintTop_toBottomOf="@+id/reservar_popup_das" />
+
+    <TextView
+        android:id="@+id/reservar_popup_as"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="as "
+        app:layout_constraintEnd_toEndOf="@+id/reservar_popup_hora_inicioTxt"
+        app:layout_constraintStart_toStartOf="@+id/reservar_popup_hora_inicioTxt"
+        app:layout_constraintTop_toBottomOf="@+id/reservar_popup_hora_inicioTxt" />
+
+    <TextView
+        android:id="@+id/reservar_popup_hora_fimTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="@+id/reservar_popup_hora_inicioTxt"
+        app:layout_constraintStart_toStartOf="@+id/reservar_popup_hora_inicioTxt"
+        app:layout_constraintTop_toBottomOf="@+id/reservar_popup_as"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:ems="10"
+        android:hint="Assunto"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <Button
+        android:id="@+id/reservar_popup_save"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@mipmap/ic_save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <ImageButton
+        android:id="@+id/reservar_popup_cancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.050000012"
+        app:srcCompat="@drawable/ic_cancel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

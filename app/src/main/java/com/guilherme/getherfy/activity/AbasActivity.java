@@ -42,9 +42,21 @@ public class AbasActivity extends AppCompatActivity {
         final SharedPreferences.Editor editor = preferences.edit();
 
         final ImageButton botaoPerfil = findViewById(R.id.activity_abas_perfilBtn);
+
+
+
+
         botaoPerfil.setOnClickListener(new View.OnClickListener() {
+            boolean podeAperta = true;
+
             @Override
             public void onClick(View v) {
+
+                if(podeAperta){
+
+
+
+
                 PopupMenu menu = new PopupMenu(AbasActivity.this, botaoPerfil);
                 try {
                     Method method = menu.getMenu().getClass().getDeclaredMethod("setOptionalIconsVisible", boolean.class);
@@ -76,7 +88,9 @@ public class AbasActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+
                 menu.show();
+            }
 
             }
         });
