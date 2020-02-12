@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.viewpager.widget.ViewPager;
@@ -106,8 +106,14 @@ public class AbasActivity extends AppCompatActivity {
         SmartTabLayout viewPagerTab = findViewById(R.id.viewPagerTab);
         viewPagerTab.setViewPager(viewPager);
 
+
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 
     public void mensagem() {
         Toast.makeText(this, "Botao ainda nao configurado", Toast.LENGTH_LONG).show();
