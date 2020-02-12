@@ -39,7 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.guilherme.getherfy.activity.SalaInfoActivity" />
+        <activity android:name="com.guilherme.getherfy.activity.SalaDetailActivity" />
         <activity android:name="com.guilherme.getherfy.activity.CadastrarActivity" />
         <activity android:name="com.guilherme.getherfy.activity.LoginActivity" />
         <activity android:name="com.guilherme.getherfy.activity.AbasActivity" />

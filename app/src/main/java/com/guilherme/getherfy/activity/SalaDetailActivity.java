@@ -29,7 +29,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,13 +40,16 @@ import com.guilherme.presentation.R;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-public class SalaInfoActivity extends AppCompatActivity implements OnMapReadyCallback, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyCallback,
+        DatePickerDialog.OnDateSetListener,
+        TimePickerDialog.OnTimeSetListener {
+
+    boolean isHoraInicio;
     Dialog novaReservaPopUp;
     DialogFragment datePicker = new DatePickerFragment();
     DialogFragment timePicker = new TimePickerFragment();
     private GoogleMap mMap;
     SharedPreferences preferences;
-    boolean isHoraInicio;
 
     private String[] permissoes = new String[]{Manifest.permission.ACCESS_FINE_LOCATION
     };
@@ -55,7 +57,7 @@ public class SalaInfoActivity extends AppCompatActivity implements OnMapReadyCal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info_sala);
+        setContentView(R.layout.activity_sala_detail);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         novaReservaPopUp = new Dialog(this);
@@ -139,24 +141,23 @@ public class SalaInfoActivity extends AppCompatActivity implements OnMapReadyCal
                 datePicker.show(getSupportFragmentManager(), "Date picker");
 
 
-
             }
         });
 
-        ImageButton btnSelecionaHoraInicio = novaReservaPopUp.findViewById(R.id.reservar_popup_hora_inicioTxt);
+        ImageButton btnSelecionaHoraInicio = novaReservaPopUp.findViewById(R.id.reservar_popup_start_time);
         btnSelecionaHoraInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 timePicker.show(getSupportFragmentManager(), "Time Picker");
-                isHoraInicio = true;
+                isHoraInicio=true;
             }
         });
-        ImageButton btnSelecionaHoraFim = novaReservaPopUp.findViewById(R.id.reservar_popup_hora_fimTxt);
+        ImageButton btnSelecionaHoraFim = novaReservaPopUp.findViewById(R.id.reservar_popup_end_time);
         btnSelecionaHoraFim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 timePicker.show(getSupportFragmentManager(), "Time Picker");
-                isHoraInicio = false;
+                isHoraInicio=false;
             }
         });
 
@@ -234,13 +235,15 @@ public class SalaInfoActivity extends AppCompatActivity implements OnMapReadyCal
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        if(isHoraInicio){
-            TextView horaInicioTxt = novaReservaPopUp.findViewById(R.id.reservar_popup_hora_inicioTxt);
-            horaInicioTxt.setText(hourOfDay + minute);
-        }else{
-            TextView horaFimTxt = novaReservaPopUp.findViewById(R.id.reservar_popup_hora_fimTxt);
-            horaFimTxt.setText(hourOfDay + minute);
 
+        String hora = String.valueOf(hourOfDay)+":"+String.valueOf(minute);
+
+        if(isHoraInicio) {
+            TextView horaInicioTxt = novaReservaPopUp.findViewById(R.id.reservar_popup_hora_inicioTxt);
+            horaInicioTxt.setText(hora);
+        }else if (!isHoraInicio){
+            TextView horaFimTxt = novaReservaPopUp.findViewById(R.id.reservar_popup_hora_fimTxt);
+            horaFimTxt.setText(hora);
         }
     }
 }

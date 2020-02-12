@@ -44,53 +44,49 @@ public class AbasActivity extends AppCompatActivity {
         final ImageButton botaoPerfil = findViewById(R.id.activity_abas_perfilBtn);
 
 
-
-
         botaoPerfil.setOnClickListener(new View.OnClickListener() {
             boolean podeAperta = true;
 
             @Override
             public void onClick(View v) {
 
-                if(podeAperta){
+                if (podeAperta) {
 
 
-
-
-                PopupMenu menu = new PopupMenu(AbasActivity.this, botaoPerfil);
-                try {
-                    Method method = menu.getMenu().getClass().getDeclaredMethod("setOptionalIconsVisible", boolean.class);
-                    method.setAccessible(true);
-                    method.invoke(menu.getMenu(), true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                menu.getMenuInflater().inflate(R.menu.layout_perfil_menu, menu.getMenu());
-
-                menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-
-                            case R.id.layout_perfil_menu_opcoes:
-                                mensagem();
-                                break;
-
-
-                            case R.id.layout_perfil_menu_logout:
-                                editor.clear();
-                                editor.commit();
-                                startActivity(new Intent(AbasActivity.this, LoginActivity.class));
-                                finish();
-                                break;
-                        }
-                        return true;
+                    PopupMenu menu = new PopupMenu(AbasActivity.this, botaoPerfil);
+                    try {
+                        Method method = menu.getMenu().getClass().getDeclaredMethod("setOptionalIconsVisible", boolean.class);
+                        method.setAccessible(true);
+                        method.invoke(menu.getMenu(), true);
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                });
+                    menu.getMenuInflater().inflate(R.menu.layout_perfil_menu, menu.getMenu());
 
-                menu.show();
-            }
+                    menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()) {
+
+                                case R.id.layout_perfil_menu_opcoes:
+                                    mensagem();
+                                    break;
+
+
+                                case R.id.layout_perfil_menu_logout:
+                                    editor.clear();
+                                    editor.commit();
+                                    startActivity(new Intent(AbasActivity.this, LoginActivity.class));
+                                    finish();
+                                    break;
+                            }
+                            return true;
+                        }
+                    });
+
+                    menu.show();
+                }
 
             }
         });
@@ -113,7 +109,7 @@ public class AbasActivity extends AppCompatActivity {
     }
 
 
-    public void mensagem(){
+    public void mensagem() {
         Toast.makeText(this, "Botao ainda nao configurado", Toast.LENGTH_LONG).show();
     }
 }

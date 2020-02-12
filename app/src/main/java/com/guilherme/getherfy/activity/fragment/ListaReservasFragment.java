@@ -17,7 +17,7 @@ import com.guilherme.getherfy.reserva.adapter.ListaReservasAdapter;
 import com.guilherme.getherfy.reserva.dao.ReservaDAO;
 import com.guilherme.getherfy.reserva.model.Reserva;
 import com.guilherme.presentation.R;
-import com.guilherme.getherfy.activity.SalaInfoActivity;
+import com.guilherme.getherfy.activity.SalaDetailActivity;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class ListaReservasFragment extends Fragment {
             listaDeReservas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(view.getContext(), SalaInfoActivity.class);
+                    Intent intent = new Intent(view.getContext(), SalaDetailActivity.class);
                     startActivity(intent);
                 }
             });

@@ -16,7 +16,7 @@ import android.widget.ListView;
 import com.guilherme.getherfy.httpService.HttpServiceSalas;
 import com.guilherme.getherfy.sala.dao.SalaDAO;
 import com.guilherme.presentation.R;
-import com.guilherme.getherfy.activity.SalaInfoActivity;
+import com.guilherme.getherfy.activity.SalaDetailActivity;
 import com.guilherme.getherfy.sala.adapter.ListaSalasAdapter;
 import com.guilherme.getherfy.sala.model.Sala;
 
@@ -75,7 +75,7 @@ public class ListaSalasFragment extends Fragment {
                         novaSala.setCapacidade(capacidade);
                         novaSala.setLocalizacao(localizacao);
 
-                        if(orgObj.has("id")){
+                        if (orgObj.has("id")) {
                             int idOrg = orgObj.getInt("id");
                             novaSala.setIdOrganizacao(idOrg);
 
@@ -95,10 +95,8 @@ public class ListaSalasFragment extends Fragment {
         listaDeSalas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(view.getContext(), SalaInfoActivity.class);
+                Intent intent = new Intent(view.getContext(), SalaDetailActivity.class);
                 startActivity(intent);
-
-                System.out.println("Opa");
 
 
             }
