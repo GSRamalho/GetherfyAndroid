@@ -29,10 +29,10 @@
                 android:src="@mipmap/ic_date_picker"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintHorizontal_bias="0.143"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.126" />
+                app:layout_constraintVertical_bias="0.216" />
 
             <ImageButton
                 android:id="@+id/btn_hora_inicio"
@@ -42,8 +42,10 @@
                 android:src="@mipmap/ic_time_start_picker"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_selecionar_dia"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.49"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btn_selecionar_dia" />
+                app:layout_constraintTop_toTopOf="@+id/btn_selecionar_dia"
+                app:layout_constraintVertical_bias="0.0" />
 
             <ImageButton
                 android:id="@+id/btn_hora_final"
@@ -67,10 +69,10 @@
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/reservar__hora_inicioTxt"
+                app:layout_constraintHorizontal_bias="0.065"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_selecionar_dia"
-                app:layout_constraintVertical_bias="0.888" />
+                app:layout_constraintVertical_bias="0.869" />
 
             <TextView
                 android:id="@+id/reservar_diaTxt"
@@ -120,6 +122,18 @@
                 app:layout_constraintStart_toStartOf="@+id/btn_selecionar_dia"
                 app:layout_constraintTop_toBottomOf="@+id/btn_selecionar_dia"
                 app:layout_constraintVertical_bias="0.36" />
+
+            <Button
+                android:id="@+id/fragment_sala_detail_reserva_btn_info"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@mipmap/ic_info"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.981"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.069" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

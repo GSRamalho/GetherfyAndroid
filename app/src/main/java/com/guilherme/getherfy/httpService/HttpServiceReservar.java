@@ -7,10 +7,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class HttpServiceSalas extends AsyncTask <String, Void, String> {
+public class HttpServiceReservar extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {
-        String urlWS = "http://172.30.248.132:8080/ReservaDeSala/rest/sala/salas";
+        String urlWS = "http://172.30.248.132:8080/ReservaDeSala/rest/reserva/cadastrar";
 
         StringBuilder result = new StringBuilder();
 
@@ -19,7 +19,8 @@ public class HttpServiceSalas extends AsyncTask <String, Void, String> {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("authorization", "secret");
-            conn.setRequestProperty("id_organizacao", strings[0]);
+
+            conn.setRequestProperty("novaReserva", strings[0]);
             conn.setConnectTimeout(2000);
 
             BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -36,5 +37,6 @@ public class HttpServiceSalas extends AsyncTask <String, Void, String> {
             e.printStackTrace();
         }
         return result.toString();
+
     }
 }

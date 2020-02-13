@@ -1,7 +1,6 @@
 package com.guilherme.getherfy.httpService;
 
 import android.os.AsyncTask;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

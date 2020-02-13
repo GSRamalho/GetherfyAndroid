@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.guilherme.getherfy.activity.fragment.SalaDetailReservaFragment;
+
 import java.util.Calendar;
 
 public class DatePickerFragment extends DialogFragment {

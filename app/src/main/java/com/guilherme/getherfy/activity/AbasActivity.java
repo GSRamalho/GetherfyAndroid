@@ -109,12 +109,6 @@ public class AbasActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
-    }
-
     public void mensagem() {
         Toast.makeText(this, "Botao ainda nao configurado", Toast.LENGTH_LONG).show();
     }

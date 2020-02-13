@@ -1,32 +1,28 @@
 package com.guilherme.getherfy.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.DialogFragment;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -40,6 +36,7 @@ import com.guilherme.getherfy.Permissoes;
 import com.guilherme.getherfy.TimePickerFragment;
 import com.guilherme.getherfy.activity.fragment.SalaDetailInfoFragment;
 import com.guilherme.getherfy.activity.fragment.SalaDetailReservaFragment;
+import com.guilherme.getherfy.sala.model.Sala;
 import com.guilherme.presentation.R;
 
 import java.text.DateFormat;
@@ -51,11 +48,13 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
 
     DialogFragment datePicker = new DatePickerFragment();
     DialogFragment timePicker = new TimePickerFragment();
-    boolean isHoraInicio;
+    SharedPreferences configHora;
+
     Dialog novaReservaPopUp;
 
     private GoogleMap mMap;
     SharedPreferences preferences;
+    FloatingActionButton btnNovaReserva;
 
     private String[] permissoes = new String[]{Manifest.permission.ACCESS_FINE_LOCATION
     };
@@ -69,12 +68,22 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
         novaReservaPopUp = new Dialog(this);
         Permissoes.validarPermissoes(permissoes, this, 1);
         preferences = getSharedPreferences("USER_LOGIN", 0);
+        configHora = getSharedPreferences("IS_HORA_INICIO", 0);
+
+        Intent intent = getIntent();
+        Sala sala = (Sala) intent.getSerializableExtra("salaSelecionada");
+
+        System.out.println("Sala selecionada: "+sala.getNome());
+
+
+        TextView nomeDaSala = findViewById(R.id.info_sala_nome);
+        nomeDaSala.setText(sala.getNome());
+
         final SharedPreferences.Editor editor = preferences.edit();
         mostraInfos();
 
 
-
-        TextView nomeEmpresa = findViewById(R.id.activity_info_sala_toolbar_nomeDaOrganizacao);
+        final TextView nomeEmpresa = findViewById(R.id.activity_info_sala_toolbar_nomeDaOrganizacao);
         nomeEmpresa.setText("Em " + preferences.getString("userNomeEmpresa", null));
 
         Button botaoVoltar = findViewById(R.id.activity_info_sala_botaoVoltar);
@@ -82,16 +91,14 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
         final ImageButton dropCardBtn = findViewById(R.id.info_sala_map_down);
 
         final CardView cardInfo = findViewById(R.id.activity_info_sala_cardview);
+        btnNovaReserva = findViewById(R.id.activity_info_sala_novaReservaBtn);
 
-        final FloatingActionButton btnNovaReserva = findViewById(R.id.activity_info_sala_novaReservaBtn);
-        final FloatingActionButton btnInfo = findViewById(R.id.btn_info);
 
         btnNovaReserva.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//               mostrarPopUpReserva(v);
+
                 btnNovaReserva.hide();
-                btnInfo.show();
 
                 SalaDetailReservaFragment fragment = new SalaDetailReservaFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.sala_detail_fragment, fragment).commit();
@@ -100,16 +107,6 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
         });
 
 
-
-        btnInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mostraInfos();
-                btnInfo.hide();
-                btnNovaReserva.show();
-
-            }
-        });
         dropCardBtn.setOnClickListener(new View.OnClickListener() {
             boolean cardviewBaixo = false;
 
@@ -137,64 +134,28 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
         });
     }
 
+    public void mostraBtnNovaReserva() {
+        btnNovaReserva.show();
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
         localizacaoDoUsuario();
+        Intent intent = getIntent();
+        Sala sala = (Sala) intent.getSerializableExtra("salaSelecionada");
 
         LatLng wises = new LatLng(-25.4554681, -49.2590617);
         mMap.addMarker(new MarkerOptions().position(wises).title("Wise Systems - Fábrica de Softwares"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(wises, 15));
     }
 
-    public void reservarFragment(View v) {
+    public void mostraInfos() {
+        SalaDetailInfoFragment fragment = new SalaDetailInfoFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.sala_detail_fragment, fragment).commit();
 
-       /* ImageButton btnCancelar;
-        novaReservaPopUp.setContentView(R.layout.reservar_popup);
-        btnCancelar = novaReservaPopUp.findViewById(R.id.reservar_popup_cancelar);
-        btnCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                novaReservaPopUp.dismiss();
-            }
-        });*/
-
-    /*    ImageButton btnSelecionarDia = novaReservaPopUp.findViewById(R.id.reservar_popup_data);
-        btnSelecionarDia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                datePicker.show(getSupportFragmentManager(), "Date picker");
-
-
-            }
-        });
-
-        ImageButton btnSelecionaHoraInicio = novaReservaPopUp.findViewById(R.id.reservar_popup_start_time);
-        btnSelecionaHoraInicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                timePicker.show(getSupportFragmentManager(), "Time Picker");
-                isHoraInicio=true;
-            }
-        });
-        ImageButton btnSelecionaHoraFim = novaReservaPopUp.findViewById(R.id.reservar_popup_end_time);
-        btnSelecionaHoraFim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                timePicker.show(getSupportFragmentManager(), "Time Picker");
-                isHoraInicio=false;
-            }
-        });*/
-
-/*
-        novaReservaPopUp.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        novaReservaPopUp.show();*/
     }
-public void mostraInfos(){
-    SalaDetailInfoFragment fragment = new SalaDetailInfoFragment();
-    getSupportFragmentManager().beginTransaction().add(R.id.sala_detail_fragment, fragment).commit();
-}
 
     public void localizacaoDoUsuario() {
         LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
@@ -208,7 +169,6 @@ public void mostraInfos(){
 
                 mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(localUsuario).title("Você está aqui")
-//                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.user_location))
                 );
 
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(localUsuario, 15));
@@ -265,19 +225,19 @@ public void mostraInfos(){
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        Boolean isHoraInicio = configHora.getBoolean("isHoraInicio", false);
 
-        String hora = String.valueOf(hourOfDay) + ":" + String.valueOf(minute);
-
-        SalaDetailReservaFragment reserva = new SalaDetailReservaFragment();
-
-
-        if (reserva.isHoraInicio()) {
+        if (isHoraInicio) {
+            String hora1 = String.valueOf(hourOfDay) + ":" + String.valueOf(minute);
             TextView horaInicioTxt = findViewById(R.id.reservar__hora_inicioTxt);
-            horaInicioTxt.setText(hora);
-        } else if (!reserva.isHoraInicio()) {
+            horaInicioTxt.setText(hora1);
+
+        } else if (!isHoraInicio) {
+            String hora2 = String.valueOf(hourOfDay) + ":" + String.valueOf(minute);
             TextView horaFimTxt = findViewById(R.id.reservar_hora_finalTxt);
-            horaFimTxt.setText(hora);
+            horaFimTxt.setText(hora2);
         }
     }
 }
+
 

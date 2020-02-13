@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.guilherme.getherfy.activity.fragment.ListaSalasFragment;
 import com.guilherme.presentation.R;
 import com.guilherme.getherfy.sala.model.Sala;
 
@@ -38,23 +39,24 @@ public class ListaSalasAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View viewCriada = LayoutInflater.from(context)
-                .inflate(R.layout.item_sala_layout, parent, false);
 
-        Sala sala = salas.get(position);
-        TextView nomeDaSala = viewCriada.findViewById(R.id.item_sala_cardview_nome);
-        nomeDaSala.setText(sala.getNome());
+         View viewCriada = LayoutInflater.from(context)
+                    .inflate(R.layout.item_sala_layout, parent, false);
 
-        TextView enderecoDaSala = viewCriada.findViewById(R.id.item_sala_cardview_endereco);
+            Sala sala = salas.get(position);
+            TextView nomeDaSala = viewCriada.findViewById(R.id.item_sala_cardview_nome);
+            nomeDaSala.setText(sala.getNome());
 
-        enderecoDaSala.setText(sala.getLocalizacao());
+            TextView enderecoDaSala = viewCriada.findViewById(R.id.item_sala_cardview_endereco);
 
-        TextView capacidadeDaSala = viewCriada.findViewById(R.id.item_sala_cardview_capacidade);
-        capacidadeDaSala.setText(sala.getCapacidade()+ " assentos");
+            enderecoDaSala.setText(sala.getLocalizacao());
 
-        return viewCriada;
+            TextView capacidadeDaSala = viewCriada.findViewById(R.id.item_sala_cardview_capacidade);
+            capacidadeDaSala.setText(sala.getCapacidade() + " assentos");
 
+            TextView salaNome = viewCriada.findViewById(R.id.info_sala_nome);
 
-    }
+            return viewCriada;
+        }
 }
 

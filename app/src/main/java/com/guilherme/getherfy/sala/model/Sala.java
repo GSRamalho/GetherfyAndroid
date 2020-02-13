@@ -1,7 +1,9 @@
 package com.guilherme.getherfy.sala.model;
 
 
-public class Sala {
+import java.io.Serializable;
+
+public class Sala implements Serializable {
     private int id;
     private int idOrganizacao;
     private String nome;
@@ -12,6 +14,27 @@ public class Sala {
     private boolean possuiAcessiblidade;
     private String localizacao;
     private boolean ativa;
+    private double latitude;
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    private double longitude;
+
+
 
     public Sala() {
         this.id = id;

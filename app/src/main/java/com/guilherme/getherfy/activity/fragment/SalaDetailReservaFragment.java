@@ -1,49 +1,28 @@
 package com.guilherme.getherfy.activity.fragment;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
-import android.content.Context;
-import android.net.Uri;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
+import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.TimePicker;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.guilherme.getherfy.DatePickerFragment;
 import com.guilherme.getherfy.TimePickerFragment;
+import com.guilherme.getherfy.activity.SalaDetailActivity;
 import com.guilherme.presentation.R;
-
-import java.text.DateFormat;
-import java.util.Calendar;
 
 public class SalaDetailReservaFragment extends Fragment {
     DialogFragment datePicker = new DatePickerFragment();
     DialogFragment timePicker = new TimePickerFragment();
-
-    public boolean isHoraInicio() {
-        return isHoraInicio;
-    }
-
-    public void setHoraInicio(boolean horaInicio) {
-        isHoraInicio = horaInicio;
-    }
-
-    private boolean isHoraInicio;
-
-    public SalaDetailReservaFragment() {
-
-
-    }
+    SharedPreferences configHora;
 
 
     // TODO: Rename and change types and number of parameters
@@ -59,18 +38,43 @@ public class SalaDetailReservaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_sala_detail_reserva, container, false);
+
+
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        final SalaDetailActivity salaDetail = new SalaDetailActivity();
+
+        configHora = getActivity().getSharedPreferences("IS_HORA_INICIO", 0);
+
+
+
+        Button btnShowInfo = getView().findViewById(R.id.fragment_sala_detail_reserva_btn_info);
+
+
+
+        btnShowInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SalaDetailInfoFragment infoFragment = new SalaDetailInfoFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.sala_detail_fragment, infoFragment);
+                fragmentTransaction.commit();
+
+                ((SalaDetailActivity)getActivity()).mostraBtnNovaReserva();
+
+            }
+        });
 
         ImageButton btnSelecionarDia = getView().findViewById(R.id.btn_selecionar_dia);
         btnSelecionarDia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                datePicker.show(getFragmentManager(), "Time Picker");
+                datePicker.show(getFragmentManager(), "Date Picker");
 
 
             }
@@ -81,7 +85,13 @@ public class SalaDetailReservaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 timePicker.show(getFragmentManager(), "Time Picker");
-                setHoraInicio(true);
+                boolean isHoraInicio;
+
+                SharedPreferences.Editor editor = configHora.edit();
+                isHoraInicio = true;
+
+                editor.putBoolean("isHoraInicio", isHoraInicio).commit();
+
             }
         });
         ImageButton btnSelecionaHoraFim = getView().findViewById(R.id.btn_hora_final);
@@ -90,9 +100,18 @@ public class SalaDetailReservaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 timePicker.show(getFragmentManager(), "Time Picker");
-                setHoraInicio(false);
+                boolean isHoraInicio;
+
+                SharedPreferences.Editor editor = configHora.edit();
+                isHoraInicio = false;
+
+                editor.putBoolean("isHoraInicio", isHoraInicio).commit();
+
             }
+
         });
+
+
 
     }
 

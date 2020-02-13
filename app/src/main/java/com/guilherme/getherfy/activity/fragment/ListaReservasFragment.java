@@ -3,9 +3,6 @@ package com.guilherme.getherfy.activity.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +10,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
+import com.guilherme.getherfy.activity.SalaDetailActivity;
 import com.guilherme.getherfy.reserva.adapter.ListaReservasAdapter;
 import com.guilherme.getherfy.reserva.dao.ReservaDAO;
 import com.guilherme.getherfy.reserva.model.Reserva;
 import com.guilherme.presentation.R;
-import com.guilherme.getherfy.activity.SalaDetailActivity;
 
 import java.util.List;
 

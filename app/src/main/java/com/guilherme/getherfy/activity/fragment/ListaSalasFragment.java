@@ -4,21 +4,20 @@ package com.guilherme.getherfy.activity.fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.guilherme.getherfy.httpService.HttpServiceSalas;
-import com.guilherme.getherfy.sala.dao.SalaDAO;
-import com.guilherme.presentation.R;
+import androidx.fragment.app.Fragment;
+
 import com.guilherme.getherfy.activity.SalaDetailActivity;
+import com.guilherme.getherfy.httpService.HttpServiceSalasByIdOrganizacao;
 import com.guilherme.getherfy.sala.adapter.ListaSalasAdapter;
+import com.guilherme.getherfy.sala.dao.SalaDAO;
 import com.guilherme.getherfy.sala.model.Sala;
+import com.guilherme.presentation.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,8 +29,8 @@ import java.util.concurrent.ExecutionException;
 
 public class ListaSalasFragment extends Fragment {
     SharedPreferences preferences;
-    Sala novaSala = new Sala();
     List<Sala> listaSalas = new ArrayList<>();
+    public long idSalaSelecionada;
 
     public ListaSalasFragment() {
 
@@ -46,22 +45,20 @@ public class ListaSalasFragment extends Fragment {
 
         String idOrganizacao = preferences.getString("userIdOrganizacao", null);
 
-        ListView listaDeSalas = view.findViewById(R.id.activity_salas_lista);
-        List<Sala> salas = new SalaDAO().lista();
+        final ListView listaDeSalas = view.findViewById(R.id.activity_salas_lista);
+        final List<Sala> salas = new SalaDAO().lista();
         listaDeSalas.setAdapter(new ListaSalasAdapter(salas, view.getContext()));
 
         try {
-            String lista = new HttpServiceSalas().execute(idOrganizacao).get();
-
-            System.out.println("Salas: " + lista);
+            String lista = new HttpServiceSalasByIdOrganizacao().execute(idOrganizacao).get();
 
             JSONArray listaJson = new JSONArray(lista);
             if (listaJson.length() > 0) {
-                System.out.println("Qnt salas: " + listaJson.length());
                 for (int i = 0; i < listaJson.length(); i++) {
-                    System.out.println(listaJson);
+                    Sala novaSala = new Sala();
 
                     JSONObject salaObj = listaJson.getJSONObject(i);
+
                     if (salaObj.has("id") && salaObj.has("nome") && salaObj.has("idOrganizacao")) {
 
                         int id = salaObj.getInt("id");
@@ -79,9 +76,9 @@ public class ListaSalasFragment extends Fragment {
                             int idOrg = orgObj.getInt("id");
                             novaSala.setIdOrganizacao(idOrg);
 
+
                         }
                         salas.add(novaSala);
-
                     }
                 }
             }
@@ -96,8 +93,8 @@ public class ListaSalasFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(view.getContext(), SalaDetailActivity.class);
+                intent.putExtra("salaSelecionada", salas.get(position));
                 startActivity(intent);
-
 
             }
         });
