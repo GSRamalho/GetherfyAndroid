@@ -4,6 +4,7 @@ package com.guilherme.getherfy.activity.fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,18 +60,27 @@ public class ListaSalasFragment extends Fragment {
 
                     JSONObject salaObj = listaJson.getJSONObject(i);
 
+
                     if (salaObj.has("id") && salaObj.has("nome") && salaObj.has("idOrganizacao")) {
 
                         int id = salaObj.getInt("id");
                         String nome = salaObj.getString("nome");
                         int capacidade = salaObj.getInt("quantidadePessoasSentadas");
                         String localizacao = salaObj.getString("localizacao");
+                        double latitude = salaObj.getDouble("latitude");
+                        double longitude = salaObj.getDouble("longitude");
+                        int area = salaObj.getInt("areaDaSala");
 
                         JSONObject orgObj = salaObj.getJSONObject("idOrganizacao");
                         novaSala.setId(id);
                         novaSala.setNome(nome);
                         novaSala.setCapacidade(capacidade);
                         novaSala.setLocalizacao(localizacao);
+                        novaSala.setArea(area);
+                        novaSala.setLatitude(latitude);
+                        novaSala.setLongitude(longitude);
+
+                        Log.i("SalaObj", ""+novaSala.getNome()+novaSala.getId());
 
                         if (orgObj.has("id")) {
                             int idOrg = orgObj.getInt("id");

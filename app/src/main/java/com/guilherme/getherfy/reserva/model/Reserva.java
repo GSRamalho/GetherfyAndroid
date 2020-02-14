@@ -10,7 +10,7 @@ public class Reserva {
     private String dataHoraFim;
     private boolean ativa;
 
-    public Reserva(int id, String sala, int organizador, String dataHoraInicio, String dataHoraFim, boolean ativa) {
+    public Reserva() {
         this.id = id;
         this.sala = sala;
         this.organizador = organizador;

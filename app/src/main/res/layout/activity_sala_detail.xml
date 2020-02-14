@@ -65,18 +65,7 @@
         app:layout_constraintEnd_toEndOf="@+id/activity_info_sala_cardview"
         app:layout_constraintStart_toStartOf="@+id/activity_info_sala_cardview"
         app:layout_constraintTop_toBottomOf="@+id/activity_info_sala_toolbar"
-        app:layout_constraintVertical_bias="1.0">
-
-        <TextView
-            android:id="@+id/info_sala_nome"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:drawable/screen_background_dark_transparent"
-            android:gravity="center"
-            android:text="Nome da sala"
-            android:textAlignment="gravity"
-            android:textColor="#FFFFFF" />
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintVertical_bias="1.0"/>
 
     <ImageView
         android:id="@+id/mapdownbtn_background"
@@ -135,7 +124,7 @@
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/activity_sala_detail_salvar_reserva"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -146,7 +135,7 @@
         app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_info_sala_toolbar"
-        app:layout_constraintVertical_bias="0.96"
+        app:layout_constraintVertical_bias="0.95"
         app:maxImageSize="40dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -161,22 +150,7 @@
         app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_info_sala_toolbar"
-        app:layout_constraintVertical_bias="0.96"
+        app:layout_constraintVertical_bias="0.95"
         app:srcCompat="@drawable/ic_nova_reserva" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@mipmap/ic_info"
-        android:visibility="gone"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.98"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

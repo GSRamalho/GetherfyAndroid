@@ -15,7 +15,23 @@ public class Sala implements Serializable {
     private String localizacao;
     private boolean ativa;
     private double latitude;
+    private double longitude;
 
+
+    public Sala() {
+        this.id = id;
+        this.idOrganizacao = idOrganizacao;
+        this.nome = nome;
+        this.capacidade = capacidade;
+        this.possuiArcon = possuiArcon;
+        this.possuiMultimidia = possuiMultimidia;
+        this.area = area;
+        this.possuiAcessiblidade = possuiAcessiblidade;
+        this.localizacao = localizacao;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.ativa = ativa;
+    }
     public double getLatitude() {
         return latitude;
     }
@@ -32,22 +48,6 @@ public class Sala implements Serializable {
         this.longitude = longitude;
     }
 
-    private double longitude;
-
-
-
-    public Sala() {
-        this.id = id;
-        this.idOrganizacao = idOrganizacao;
-        this.nome = nome;
-        this.capacidade = capacidade;
-        this.possuiArcon = possuiArcon;
-        this.possuiMultimidia = possuiMultimidia;
-        this.area = area;
-        this.possuiAcessiblidade = possuiAcessiblidade;
-        this.localizacao = localizacao;
-        this.ativa = ativa;
-    }
 
     public int getIdOrganizacao() {
         return idOrganizacao;

@@ -54,8 +54,6 @@ public class ListaSalasAdapter extends BaseAdapter {
             TextView capacidadeDaSala = viewCriada.findViewById(R.id.item_sala_cardview_capacidade);
             capacidadeDaSala.setText(sala.getCapacidade() + " assentos");
 
-            TextView salaNome = viewCriada.findViewById(R.id.info_sala_nome);
-
             return viewCriada;
         }
 }
