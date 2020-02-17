@@ -29,10 +29,6 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class ListaSalasFragment extends Fragment {
-    SharedPreferences preferences;
-    List<Sala> listaSalas = new ArrayList<>();
-    public long idSalaSelecionada;
-
     public ListaSalasFragment() {
 
     }
