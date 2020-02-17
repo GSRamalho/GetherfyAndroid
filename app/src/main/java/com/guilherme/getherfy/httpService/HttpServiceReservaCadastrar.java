@@ -19,7 +19,7 @@ public class HttpServiceReservaCadastrar extends AsyncTask <String, Void, String
         try {
             URL url = new URL(urlWS);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
+            conn.setRequestMethod("POST");
             conn.setRequestProperty("authorization", "secret");
 
             conn.setRequestProperty("novaReserva", strings[0]);

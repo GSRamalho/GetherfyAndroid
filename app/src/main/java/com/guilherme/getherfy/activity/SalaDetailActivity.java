@@ -19,6 +19,7 @@ import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +38,8 @@ import com.guilherme.getherfy.Permissoes;
 import com.guilherme.getherfy.TimePickerFragment;
 import com.guilherme.getherfy.activity.fragment.SalaDetailInfoFragment;
 import com.guilherme.getherfy.activity.fragment.SalaDetailReservaFragment;
+import com.guilherme.getherfy.httpService.HttpServiceCadastro;
+import com.guilherme.getherfy.httpService.HttpServiceReservaCadastrar;
 import com.guilherme.getherfy.reserva.model.Reserva;
 import com.guilherme.getherfy.sala.model.Sala;
 import com.guilherme.presentation.R;
@@ -44,7 +47,11 @@ import com.guilherme.presentation.R;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyCallback,
         DatePickerDialog.OnDateSetListener,
@@ -54,6 +61,7 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
     DialogFragment timePicker = new TimePickerFragment();
     SharedPreferences configHora;
 
+
     Dialog novaReservaPopUp;
     private boolean novaReservaVisivel = true;
     private GoogleMap mMap;
@@ -61,9 +69,8 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
     FloatingActionButton btnNovaReserva;
     FloatingActionButton btnSalvarReserva;
 
-
-
-
+    long dateTimeInicioMilliseconds;
+    long dateTimeFimMilliseconds;
 
     private String[] permissoes = new String[]{Manifest.permission.ACCESS_FINE_LOCATION
     };
@@ -71,33 +78,30 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sala_detail);
 
         TextView dia = findViewById(R.id.reservar_diaTxt);
         TextView horaInicioTxt = findViewById(R.id.reservar__hora_inicioTxt);
         TextView horaFimTxt = findViewById(R.id.reservar_hora_finalTxt);
         TextView descricao = findViewById(R.id.reservar_campo_assunto);
 
-        setContentView(R.layout.activity_sala_detail);
+        Sala sala = salaAtual();
+
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         Permissoes.validarPermissoes(permissoes, this, 1);
         preferences = getSharedPreferences("USER_LOGIN", 0);
         configHora = getSharedPreferences("IS_HORA_INICIO", 0);
 
-        Intent intent = getIntent();
-        Sala sala = (Sala) intent.getSerializableExtra("salaSelecionada");
-
         final SharedPreferences.Editor editor = preferences.edit();
         mostraInfos();
-
 
         final TextView nomeEmpresa = findViewById(R.id.activity_info_sala_toolbar_nomeDaOrganizacao);
         nomeEmpresa.setText("" + sala.getNome());
 
         Button botaoVoltar = findViewById(R.id.activity_info_sala_botaoVoltar);
-
         final ImageButton dropCardBtn = findViewById(R.id.info_sala_map_down);
-
         final CardView cardInfo = findViewById(R.id.activity_info_sala_cardview);
         btnNovaReserva = findViewById(R.id.activity_info_sala_novaReservaBtn);
         btnSalvarReserva = findViewById(R.id.activity_sala_detail_salvar_reserva);
@@ -146,8 +150,6 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
         });
 
 
-
-
         //Implementar
         btnSalvarReserva.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,25 +163,40 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
                     TextView horaInicioTxt = findViewById(R.id.reservar__hora_inicioTxt);
                     TextView horaFimTxt = findViewById(R.id.reservar_hora_finalTxt);
                     TextView descricao = findViewById(R.id.reservar_campo_assunto);
-                    Intent intent = getIntent();
-                    Sala sala = (Sala) intent.getSerializableExtra("salaSelecionada");
+
+                    Sala sala = salaAtual();
+                    String idOrganizador = preferences.getString("userId", null);
+
+                    formataHoras(horaInicioTxt, horaFimTxt);
+
 
                     reservaJson.put("descricao", descricao.getText());
                     reservaJson.put("id_sala", sala.getId());
-                    reservaJson.put("data", dia.getText());
-                    reservaJson.put("data_hora_inicio", horaInicioTxt.getText());
-                    reservaJson.put("data_hora_fim",horaFimTxt.getText());
+                    reservaJson.put("id_usuario", idOrganizador);
+                    reservaJson.put("data_hora_inicio", dateTimeInicioMilliseconds);
+                    reservaJson.put("data_hora_fim", dateTimeFimMilliseconds);
+                    reservaJson.put("ativo", true);
 
 
                     System.out.println(reservaJson.toString());
                     String novaReservaEncoded = Base64.encodeToString(reservaJson.toString().getBytes("UTF-8"), Base64.NO_WRAP);
-
                     System.out.println(novaReservaEncoded);
+                    String mensagem = (new HttpServiceReservaCadastrar().execute(novaReservaEncoded).get());
+
+                    System.out.println(mensagem);
+                    mostraMensagem(mensagem);
+
+                    if(mensagem.equalsIgnoreCase("Reserva realizada com sucesso")){
+                        startActivity(new Intent(SalaDetailActivity.this, AbasActivity.class));
+                        finish();
+                    }
 
                 }catch (Exception e){
 
                 }
             }
+
+
         });
 
         botaoVoltar.setOnClickListener(new View.OnClickListener() {
@@ -190,6 +207,14 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
         });
     }
 
+    private Sala salaAtual() {
+        Intent intent = getIntent();
+        return (Sala) intent.getSerializableExtra("salaSelecionada");
+    }
+
+    private void mostraMensagem(String mensagem) {
+        Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show();
+    }
     public void mostraBtnNovaReserva() {
         btnNovaReserva.show();
     }
@@ -199,8 +224,7 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
         mMap = googleMap;
 
         localizacaoDoUsuario();
-        Intent intent = getIntent();
-        Sala sala = (Sala) intent.getSerializableExtra("salaSelecionada");
+        Sala sala = salaAtual();
 
         LatLng wises = new LatLng(sala.getLatitude(), sala.getLongitude());
         mMap.addMarker(new MarkerOptions().position(wises).title("Wise Systems - Fábrica de Softwares"));
@@ -279,9 +303,12 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
         calendario.set(Calendar.YEAR, year);
         calendario.set(Calendar.MONTH, month);
         calendario.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String date = DateFormat.getDateInstance().format(calendario.getTime());
 
-        dia.setText(date);
+        String date = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendario.getTime());
+
+        dia.setText(String.format(date));
+
+
     }
 
     @Override
@@ -289,16 +316,59 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
         TextView horaInicioTxt = findViewById(R.id.reservar__hora_inicioTxt);
         TextView horaFimTxt = findViewById(R.id.reservar_hora_finalTxt);
         Boolean isHoraInicio = configHora.getBoolean("isHoraInicio", false);
+        String horaFormatada;
+        String minutoFormatado;
+
+        horaFormatada = String.valueOf(hourOfDay);
+        minutoFormatado = String.valueOf(minute);
+
+        if(hourOfDay<10){
+            horaFormatada = "0"+hourOfDay;
+        }
+        if(minute<10){
+            minutoFormatado = "0"+minute;
+        }
 
         if (isHoraInicio) {
-            String hora1 = String.valueOf(hourOfDay) + ":" + String.valueOf(minute);
+            String hora1 = horaFormatada + ":" + minutoFormatado;
             horaInicioTxt.setText(hora1);
-
         } else if (!isHoraInicio) {
-            String hora2 = String.valueOf(hourOfDay) + ":" + String.valueOf(minute);
+            String hora2 = horaFormatada + ":" + minutoFormatado;
             horaFimTxt.setText(hora2);
         }
+
+
     }
+
+    private void formataHoras(TextView horaInicioTxt, TextView horaFimTxt) {
+        SimpleDateFormat dateTimeFormat=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        TextView dia = findViewById(R.id.reservar_diaTxt);
+
+        String dataStr = dia.getText().toString();
+        String horaInicioStr = horaInicioTxt.getText().toString();
+        String horaFimStr = horaFimTxt.getText().toString();
+        String dateTimeInicio = dataStr + " "+horaInicioStr+":00".trim();
+        String dateTimeFim = dataStr + " "+horaFimStr+":00".trim();
+
+
+        System.out.println(dateTimeInicio);
+        System.out.println(dateTimeFim);
+        try {
+
+            Date dateTimeInicioParseado = dateTimeFormat.parse(dateTimeInicio);
+            Date dateTimeFimParseado = dateTimeFormat.parse(dateTimeFim);
+            dateTimeInicioMilliseconds=dateTimeInicioParseado.getTime();
+            dateTimeFimMilliseconds = dateTimeFimParseado.getTime();
+
+
+            System.out.println(dateTimeInicioMilliseconds);
+            System.out.println(dateTimeFimMilliseconds);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
 
