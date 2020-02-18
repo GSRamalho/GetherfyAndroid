@@ -11,13 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_reservas_avisoListaVazia"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_reserva_layout">
 
     </ListView>
@@ -28,10 +27,10 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textColor="#0A1FA3"
-        android:textSize="30dp"
-        android:visibility="gone"
+        android:textSize="30sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/fragment_reservas_lista"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Você ainda não possui reservas" />

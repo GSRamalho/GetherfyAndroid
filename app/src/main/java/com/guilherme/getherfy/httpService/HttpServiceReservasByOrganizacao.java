@@ -1,13 +1,24 @@
 package com.guilherme.getherfy.httpService;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.guilherme.getherfy.activity.fragment.ListaReservasFragment;
+import com.guilherme.presentation.R;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HttpServiceReservasByOrganizacao extends AsyncTask <String, Void, String> {
+
+    ListaReservasFragment listaReservasFragment = new ListaReservasFragment();
     @Override
     protected String doInBackground(String... strings) {
         String urlWS = "http://172.30.248.132:8080/ReservaDeSala/rest/reserva/byIdOrganizacao";
@@ -36,6 +47,9 @@ public class HttpServiceReservasByOrganizacao extends AsyncTask <String, Void, S
         {
             e.printStackTrace();
         }
+
+
+
         return result.toString();
 
     }

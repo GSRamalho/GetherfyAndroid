@@ -217,6 +217,8 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
     }
     public void mostraBtnNovaReserva() {
         btnNovaReserva.show();
+        novaReservaVisivel = true;
+
     }
 
     @Override
