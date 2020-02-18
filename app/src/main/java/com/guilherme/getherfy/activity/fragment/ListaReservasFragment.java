@@ -45,7 +45,6 @@ public class ListaReservasFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_reservas, container, false);
 
         TextView naoPossuiReservasTxt = view.findViewById(R.id.fragment_reservas_avisoListaVazia);
@@ -68,6 +67,9 @@ public class ListaReservasFragment extends Fragment {
         try {
            String lista = new HttpServiceReservasByOrganizacao().execute(idOrganizacao).get();
 
+            System.out.println(lista);
+
+
             JSONArray listaJson = new JSONArray(lista);
             if (listaJson.length() > 0) {
                 for (int i = 0; i < listaJson.length(); i++) {
@@ -85,8 +87,22 @@ public class ListaReservasFragment extends Fragment {
                         String dataHoraFim = reservaObj.getString("dataHoraFim");
                         boolean ativo = reservaObj.getBoolean("ativo");
                         String descricao = reservaObj.getString("descricao");
+                        String nomeOrganizador = reservaObj.getString("nomeOrganizador");
+
+
+                        novaReserva.setId(id);
+                        novaReserva.setSala(idSala);
+                        novaReserva.setNomeOrganizador(nomeOrganizador);
+                        novaReserva.setDataHoraInicio(dataHoraInicio);
+                        novaReserva.setDataHoraFim(dataHoraFim);
+                        novaReserva.setOrganizador(idUsuario);
+                        novaReserva.setDescricao(descricao);
+                        novaReserva.setAtivo(ativo);
+
 
                         reservas.add(novaReserva);
+
+
                     }
                 }
             }
@@ -101,9 +117,11 @@ public class ListaReservasFragment extends Fragment {
         listaDeReservas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(view.getContext(), SalaDetailActivity.class);
+                System.out.println("Position:" +position);
+
+/*                Intent intent = new Intent(view.getContext(), SalaDetailActivity.class);
                 intent.putExtra("reservaSelecionada", reservas.get(position));
-                startActivity(intent);
+                startActivity(intent);*/
 
             }
         });

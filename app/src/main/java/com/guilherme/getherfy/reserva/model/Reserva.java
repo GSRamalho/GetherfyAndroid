@@ -11,6 +11,8 @@ public class Reserva implements Serializable {
     private String dataHoraFim;
     private boolean ativo;
     private String descricao;
+    private String nomeOrganizador;
+
 
     public Reserva() {
         this.id = id;
@@ -20,6 +22,14 @@ public class Reserva implements Serializable {
         this.dataHoraFim = dataHoraFim;
         this.ativo = ativo;
         this.descricao = descricao;
+    }
+
+    public String getNomeOrganizador() {
+        return nomeOrganizador;
+    }
+
+    public void setNomeOrganizador(String nomeOrganizador) {
+        this.nomeOrganizador = nomeOrganizador;
     }
 
     public String getDescricao() {
