@@ -38,16 +38,13 @@ public class ListaReservasAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        if (reservas.size() == 0) {
-            View viewVazia = LayoutInflater.from(context)
-                    .inflate(R.layout.item_reserva_vazio, parent, false);
-            return viewVazia;
-        } else {
             View viewCriada = LayoutInflater.from(context)
                     .inflate(R.layout.item_reserva_layout, parent, false);
             Reserva reserva = reservas.get(position);
+
+            
             return viewCriada;
         }
     }
-}
+
 

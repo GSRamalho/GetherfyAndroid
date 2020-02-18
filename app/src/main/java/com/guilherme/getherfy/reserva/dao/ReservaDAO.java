@@ -1,16 +1,18 @@
 package com.guilherme.getherfy.reserva.dao;
 
 import com.guilherme.getherfy.reserva.model.Reserva;
+import com.guilherme.getherfy.sala.model.Sala;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReservaDAO {
 
-    public List<Reserva> lista() {
-        List<Reserva> reservas = null; /*new ArrayList<>(Arrays.asList(
+    Reserva reserva = new Reserva();
 
-            new Reserva(1, "Conselho Jedi", 1, "Hoje", "Amanha", true)));
-        return reservas;*/
+    public List<Reserva> lista() {
+        List<Reserva> reservas = new ArrayList();
+
         return reservas;
     }
 

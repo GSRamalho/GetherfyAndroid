@@ -7,7 +7,7 @@
     tools:context="com.guilherme.getherfy.activity.fragment.ListaSalasFragment">
 
     <ListView
-    android:id="@+id/activity_salas_lista"
+    android:id="@+id/fragment_salas_lista"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"

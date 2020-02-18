@@ -42,8 +42,8 @@ public class ListaSalasAdapter extends BaseAdapter {
 
          View viewCriada = LayoutInflater.from(context)
                     .inflate(R.layout.item_sala_layout, parent, false);
-
             Sala sala = salas.get(position);
+
             TextView nomeDaSala = viewCriada.findViewById(R.id.item_sala_cardview_nome);
             nomeDaSala.setText(sala.getNome());
 

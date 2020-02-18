@@ -7,9 +7,10 @@ public class Reserva implements Serializable {
     private int id;
     private int sala;
     private int organizador;
-    private long dataHoraInicio;
-    private long dataHoraFim;
-    private boolean ativa;
+    private String dataHoraInicio;
+    private String dataHoraFim;
+    private boolean ativo;
+    private String descricao;
 
     public Reserva() {
         this.id = id;
@@ -17,7 +18,16 @@ public class Reserva implements Serializable {
         this.organizador = organizador;
         this.dataHoraInicio = dataHoraInicio;
         this.dataHoraFim = dataHoraFim;
-        this.ativa = ativa;
+        this.ativo = ativo;
+        this.descricao = descricao;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public int getId() {
@@ -44,27 +54,27 @@ public class Reserva implements Serializable {
         this.organizador = organizador;
     }
 
-    public long getDataHoraInicio() {
+    public String getDataHoraInicio() {
         return dataHoraInicio;
     }
 
-    public void setDataHoraInicio(long dataHoraInicio) {
+    public void setDataHoraInicio(String dataHoraInicio) {
         this.dataHoraInicio = dataHoraInicio;
     }
 
-    public long getDataHoraFim() {
+    public String getDataHoraFim() {
         return dataHoraFim;
     }
 
-    public void setDataHoraFim(long dataHoraFim) {
+    public void setDataHoraFim(String dataHoraFim) {
         this.dataHoraFim = dataHoraFim;
     }
 
-    public boolean isAtiva() {
-        return ativa;
+    public boolean isAtivo() {
+        return ativo;
     }
 
-    public void setAtiva(boolean ativa) {
-        this.ativa = ativa;
+    public void setAtivo(boolean ativa) {
+        this.ativo = ativo;
     }
 }

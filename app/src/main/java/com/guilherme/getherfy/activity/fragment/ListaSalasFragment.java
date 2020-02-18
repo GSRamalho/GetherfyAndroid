@@ -24,7 +24,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -42,7 +41,7 @@ public class ListaSalasFragment extends Fragment {
 
         String idOrganizacao = preferences.getString("userIdOrganizacao", null);
 
-        final ListView listaDeSalas = view.findViewById(R.id.activity_salas_lista);
+        final ListView listaDeSalas = view.findViewById(R.id.fragment_salas_lista);
         final List<Sala> salas = new SalaDAO().lista();
         listaDeSalas.setAdapter(new ListaSalasAdapter(salas, view.getContext()));
 
