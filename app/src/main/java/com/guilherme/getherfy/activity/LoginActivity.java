@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
         Button loginBtn = findViewById(R.id.activity_cadastrar_btnLogin);
         ImageButton btnViewPassword = findViewById(R.id.activity_login_view_passoword);
 
-        System.out.println("InputType "+senhaEt.getInputType());
 
         btnViewPassword.setOnClickListener(new View.OnClickListener() {
 

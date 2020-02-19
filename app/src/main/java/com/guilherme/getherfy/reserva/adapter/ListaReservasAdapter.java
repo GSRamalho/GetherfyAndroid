@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.guilherme.getherfy.reserva.model.Reserva;
@@ -64,19 +65,19 @@ public class ListaReservasAdapter extends BaseAdapter {
 
         SimpleDateFormat dateFormat =new SimpleDateFormat("dd/MM/yyyy");
 
-        try {
-            Date dateTimeInicioParseado = dateFormat.parse(reserva.getDataHoraInicio());
-            String dataFormatada = dateTimeInicioParseado.toString();
-            TextView data = viewCriada.findViewById(R.id.fragment_item_reserva_dia);
-            data.setText(dataFormatada);
-            System.out.println(dataFormatada+" OPA");
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        TextView data = viewCriada.findViewById(R.id.fragment_item_reserva_dia);
+        data.setText(reserva.getDataHoraInicio());
 
 
+        final ImageButton btnRemover = viewCriada.findViewById(R.id.fragment_item_reserva_remover);
 
+        btnRemover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnRemover.setVisibility(View.VISIBLE);
+
+            }
+        });
 
         return viewCriada;
         }

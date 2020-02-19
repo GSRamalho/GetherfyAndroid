@@ -1,6 +1,7 @@
 package com.guilherme.getherfy.activity.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.LocationListener;
@@ -10,11 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.guilherme.getherfy.activity.SalaDetailActivity;
@@ -38,6 +42,10 @@ import java.util.concurrent.ExecutionException;
 
 public class ListaReservasFragment extends Fragment {
 
+    private boolean isItemLongClicked;
+    private String lista;
+    int selecionado;
+
     public ListaReservasFragment() {
     }
 
@@ -50,25 +58,46 @@ public class ListaReservasFragment extends Fragment {
         TextView naoPossuiReservasTxt = view.findViewById(R.id.fragment_reservas_avisoListaVazia);
         naoPossuiReservasTxt.setVisibility(View.VISIBLE);
 
-
         SharedPreferences preferences = this.getActivity().getSharedPreferences("USER_LOGIN", 0);
         final SharedPreferences.Editor editor = preferences.edit();
 
         String idOrganizacao = preferences.getString("userIdOrganizacao", null);
 
 
-        final ListView listaDeReservas = view.findViewById(R.id.fragment_reservas_lista);
+        ListView listaDeReservas = carregaLista(view, idOrganizacao);
 
-        final List<Reserva> reservas = new ReservaDAO().lista();
+        listaDeReservas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println("Position:" +position);
+
+/*                Intent intent = new Intent(view.getContext(), SalaDetailActivity.class);
+                intent.putExtra("reservaSelecionada", reservas.get(position));
+                startActivity(intent);*/
+
+            }
+        });
+
+        listaDeReservas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                LinearLayout itemOptions = view.findViewById(R.id.item_reserva_layout_options);
+
+                return false;
+            }
+        });
+
+        return view;
+    }
+
+    private ListView carregaLista(View view, String idOrganizacao) {
+        ListView listaDeReservas = view.findViewById(R.id.fragment_reservas_lista);
+        List<Reserva> reservas = new ReservaDAO().lista();
         listaDeReservas.setAdapter(new ListaReservasAdapter(reservas, view.getContext()));
 
 
-
         try {
-           String lista = new HttpServiceReservasByOrganizacao().execute(idOrganizacao).get();
-
-            System.out.println(lista);
-
+           lista = new HttpServiceReservasByOrganizacao().execute(idOrganizacao).get();
 
             JSONArray listaJson = new JSONArray(lista);
             if (listaJson.length() > 0) {
@@ -106,6 +135,7 @@ public class ListaReservasFragment extends Fragment {
                     }
                 }
             }
+
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -113,19 +143,12 @@ public class ListaReservasFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        listaDeReservas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("Position:" +position);
-
-/*                Intent intent = new Intent(view.getContext(), SalaDetailActivity.class);
-                intent.putExtra("reservaSelecionada", reservas.get(position));
-                startActivity(intent);*/
-
-            }
-        });
-
-        return view;
+        return listaDeReservas;
     }
+
+    private void carregaLista(List<Reserva> reservas, String lista) throws JSONException {
+
+    }
+
+
 }
