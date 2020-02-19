@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 
 public class LoginActivity extends AppCompatActivity {
-
+    boolean isSenhaVisivel=false;
     SharedPreferences preferences;
 
     @Override
@@ -28,18 +28,38 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ImageButton voltarBtn = findViewById(R.id.activity_login_voltarBtn);
+        final TextView emailEt = findViewById(R.id.activity_login_email);
+        final TextView senhaEt = findViewById(R.id.activity_login_senha);
 
         Button loginBtn = findViewById(R.id.activity_cadastrar_btnLogin);
+        ImageButton btnViewPassword = findViewById(R.id.activity_login_view_passoword);
+
+        System.out.println("InputType "+senhaEt.getInputType());
+
+        btnViewPassword.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if(!isSenhaVisivel) {
+                    senhaEt.setInputType(128);
+                    isSenhaVisivel=true;
+                }else if (isSenhaVisivel){
+                    senhaEt.setInputType(225);
+                    isSenhaVisivel=false;
+                }
+            }
+        });
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
 
-                    TextView emailEt = findViewById(R.id.activity_login_email);
-                    TextView senhaEt = findViewById(R.id.activity_login_senha);
+
                     final String emailString = emailEt.getText().toString().trim();
                     final String senhaString = senhaEt.getText().toString().trim();
+
+
 
                     String usuarioLogado = new HttpServiceLogin().execute(emailString, senhaString).get();
                     if (usuarioLogado.length() > 0) {
