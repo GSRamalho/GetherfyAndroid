@@ -1,10 +1,7 @@
 package com.guilherme.getherfy.activity.fragment;
 
 
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.location.LocationListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,39 +9,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.guilherme.getherfy.activity.SalaDetailActivity;
+import com.guilherme.getherfy.activity.AbasActivity;
 import com.guilherme.getherfy.httpService.HttpServiceReservasByOrganizacao;
-import com.guilherme.getherfy.httpService.HttpServiceSalasByIdOrganizacao;
 import com.guilherme.getherfy.reserva.adapter.ListaReservasAdapter;
 import com.guilherme.getherfy.reserva.dao.ReservaDAO;
 import com.guilherme.getherfy.reserva.model.Reserva;
-import com.guilherme.getherfy.sala.adapter.ListaSalasAdapter;
-import com.guilherme.getherfy.sala.dao.SalaDAO;
-import com.guilherme.getherfy.sala.model.Sala;
 import com.guilherme.presentation.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class ListaReservasFragment extends Fragment {
+public class ListaReservasFragment extends Fragment implements AtualizaLista {
 
-    private boolean isItemLongClicked;
-    private String lista;
-    int selecionado;
+    private String listaStr;
+    private int selecionado;
+    ListaReservasAdapter listaReservasAdapter = new ListaReservasAdapter();
+
+    String idOrganizacao ;
+
 
     public ListaReservasFragment() {
     }
@@ -55,51 +47,48 @@ public class ListaReservasFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reservas, container, false);
 
+        idOrganizacao = ((AbasActivity)getActivity()).getIdOrganizacao();
+
         TextView naoPossuiReservasTxt = view.findViewById(R.id.fragment_reservas_avisoListaVazia);
         naoPossuiReservasTxt.setVisibility(View.VISIBLE);
 
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("USER_LOGIN", 0);
-        final SharedPreferences.Editor editor = preferences.edit();
-
-        String idOrganizacao = preferences.getString("userIdOrganizacao", null);
-
-
-        ListView listaDeReservas = carregaLista(view, idOrganizacao);
-
-        listaDeReservas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ImageButton btnRemover = view.findViewById(R.id.fragment_item_reserva_remover);
+        btnRemover.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("Position:" +position);
+            public void onClick(View v) {
 
-/*                Intent intent = new Intent(view.getContext(), SalaDetailActivity.class);
-                intent.putExtra("reservaSelecionada", reservas.get(position));
-                startActivity(intent);*/
 
             }
         });
 
-        listaDeReservas.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                LinearLayout itemOptions = view.findViewById(R.id.item_reserva_layout_options);
+        try {
+            listaStr = new HttpServiceReservasByOrganizacao().execute(idOrganizacao).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-                return false;
-            }
-        });
+
+        final ListView listaDeReservas = carregaLista(view, idOrganizacao);
+
 
         return view;
     }
 
-    private ListView carregaLista(View view, String idOrganizacao) {
+
+
+    public ListView carregaLista(View view, String idOrganizacao) {
         ListView listaDeReservas = view.findViewById(R.id.fragment_reservas_lista);
         List<Reserva> reservas = new ReservaDAO().lista();
-        listaDeReservas.setAdapter(new ListaReservasAdapter(reservas, view.getContext()));
+        ListaReservasAdapter adapter = new ListaReservasAdapter(reservas, getContext());
+        adapter.atualizaLista=this;
+        listaDeReservas.setAdapter(adapter);
 
 
         try {
-           lista = new HttpServiceReservasByOrganizacao().execute(idOrganizacao).get();
 
-            JSONArray listaJson = new JSONArray(lista);
+            JSONArray listaJson = new JSONArray(listaStr);
             if (listaJson.length() > 0) {
                 for (int i = 0; i < listaJson.length(); i++) {
                     Reserva novaReserva = new Reserva();
@@ -136,19 +125,21 @@ public class ListaReservasFragment extends Fragment {
                 }
             }
 
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (Exception e){
             e.printStackTrace();
         }
         return listaDeReservas;
     }
 
-    private void carregaLista(List<Reserva> reservas, String lista) throws JSONException {
 
+
+
+    @Override
+    public void atualizarLista(boolean id) {
+
+        if(id) {
+            Log.e("SalasFragment", "refresh");
+            carregaLista(getView(), idOrganizacao);
+        }
     }
-
-
 }

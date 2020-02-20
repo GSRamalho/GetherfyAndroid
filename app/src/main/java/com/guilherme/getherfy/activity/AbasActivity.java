@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,15 +32,31 @@ public class AbasActivity extends AppCompatActivity {
 
     private SmartTabLayout smartTabLayout;
     private ViewPager viewPager;
-
     SharedPreferences preferences;
+
+    public String idOrganizacao;
+
+
+    public String getIdOrganizacao() {
+        return idOrganizacao;
+    }
+
+    public void setIdOrganizacao(String idOrganizacao) {
+        this.idOrganizacao = idOrganizacao;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_abas);
+
+
         preferences = getSharedPreferences("USER_LOGIN", 0);
         final SharedPreferences.Editor editor = preferences.edit();
+
+        idOrganizacao = preferences.getString("userIdOrganizacao", null);
+        Log.e("AbasActivity", idOrganizacao);
 
         final ImageButton botaoPerfil = findViewById(R.id.activity_abas_perfilBtn);
 
