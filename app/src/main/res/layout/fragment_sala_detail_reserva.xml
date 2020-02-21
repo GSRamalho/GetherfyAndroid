@@ -70,32 +70,30 @@
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.343"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.925" />
 
             <Button
                 android:id="@+id/btn_selecionar_dia"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="DD/MM/AAAA"
+                android:text="Dia da reserva"
                 android:textColor="#000000"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_selecionar_dia"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.02"
-                app:layout_constraintStart_toEndOf="@+id/img_selecionar_dia"
-                app:layout_constraintTop_toTopOf="@+id/img_selecionar_dia"
-                app:layout_constraintVertical_bias="0.428" />
+                app:layout_constraintEnd_toEndOf="@+id/btn_selecionar_hora_inicio"
+                app:layout_constraintStart_toEndOf="@+id/img_hora_inicio"
+                app:layout_constraintTop_toTopOf="@+id/img_selecionar_dia" />
 
             <Button
                 android:id="@+id/btn_selecionar_hora_final"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="HH/MM"
+                android:text="Horario final"
                 android:textColor="#000000"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_hora_final"
                 app:layout_constraintEnd_toEndOf="@+id/btn_selecionar_hora_inicio"
                 app:layout_constraintHorizontal_bias="0.498"
@@ -105,17 +103,14 @@
 
             <Button
                 android:id="@+id/btn_selecionar_hora_inicio"
-                android:layout_width="0dp"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:text="HH/MM"
+                android:text="Horario inicial"
                 android:textColor="#000000"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_hora_inicio"
-                app:layout_constraintEnd_toEndOf="@+id/btn_selecionar_dia"
-                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toEndOf="@+id/img_hora_inicio"
-                app:layout_constraintTop_toTopOf="@+id/img_hora_inicio"
-                app:layout_constraintVertical_bias="0.571" />
+                app:layout_constraintTop_toTopOf="@+id/img_hora_inicio" />
 
             <Button
                 android:id="@+id/fragment_sala_detail_reserva_btn_info"
@@ -134,11 +129,12 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/ic_edit_field"
-                app:layout_constraintBottom_toBottomOf="@+id/reservar_campo_assunto"
-                app:layout_constraintEnd_toStartOf="@+id/reservar_campo_assunto"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/reservar_campo_assunto" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.889" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -133,4 +133,31 @@
         app:layout_constraintTop_toTopOf="@+id/activity_cadastrar_email"
         app:srcCompat="@drawable/ic_cadastro_warning" />
 
+    <ImageView
+        android:id="@+id/registrar_email_icon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_cadastrar_nome"
+        app:layout_constraintEnd_toStartOf="@+id/activity_cadastrar_nome"
+        app:layout_constraintTop_toTopOf="@+id/activity_cadastrar_nome"
+        app:srcCompat="@drawable/ic_email" />
+
+    <ImageView
+        android:id="@+id/registrar_senha_icon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_login_senha"
+        app:layout_constraintEnd_toStartOf="@+id/activity_login_senha"
+        app:layout_constraintTop_toTopOf="@+id/activity_login_senha"
+        app:srcCompat="@drawable/ic_password" />
+
+    <ImageView
+        android:id="@+id/registrar_email_icon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_cadastrar_email"
+        app:layout_constraintEnd_toStartOf="@+id/activity_cadastrar_email"
+        app:layout_constraintTop_toTopOf="@+id/activity_cadastrar_email"
+        app:srcCompat="@drawable/ic_person" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
