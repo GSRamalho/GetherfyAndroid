@@ -140,7 +140,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/activity_cadastrar_nome"
         app:layout_constraintEnd_toStartOf="@+id/activity_cadastrar_nome"
         app:layout_constraintTop_toTopOf="@+id/activity_cadastrar_nome"
-        app:srcCompat="@drawable/ic_email" />
+        app:srcCompat="@drawable/ic_person" />
 
     <ImageView
         android:id="@+id/registrar_senha_icon"
@@ -158,6 +158,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/activity_cadastrar_email"
         app:layout_constraintEnd_toStartOf="@+id/activity_cadastrar_email"
         app:layout_constraintTop_toTopOf="@+id/activity_cadastrar_email"
-        app:srcCompat="@drawable/ic_person" />
+        app:srcCompat="@drawable/ic_email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
