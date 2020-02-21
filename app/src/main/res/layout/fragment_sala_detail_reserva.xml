@@ -22,43 +22,44 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/btn_selecionar_dia"
+                android:id="@+id/img_selecionar_dia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
                 android:background="@null"
                 android:src="@mipmap/ic_date_picker"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.044"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.174" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <ImageButton
-                android:id="@+id/btn_hora_inicio"
+                android:id="@+id/img_hora_inicio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:src="@mipmap/ic_time_start_picker"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.044"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/img_selecionar_dia"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.4" />
+                app:layout_constraintVertical_bias="0.39" />
 
             <ImageButton
-                android:id="@+id/btn_hora_final"
+                android:id="@+id/img_hora_final"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:src="@mipmap/ic_time_end_picker"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.044"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/img_hora_inicio"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.622" />
+                app:layout_constraintVertical_bias="0.65" />
 
             <EditText
                 android:id="@+id/reservar_campo_assunto"
@@ -69,62 +70,51 @@
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.08"
+                app:layout_constraintHorizontal_bias="0.343"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.925" />
 
-            <TextView
-                android:id="@+id/reservar_diaTxt"
+            <Button
+                android:id="@+id/btn_selecionar_dia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DD/MM/AAAA"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/btn_selecionar_dia"
+                app:layout_constraintBottom_toBottomOf="@+id/img_selecionar_dia"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btn_selecionar_dia"
+                app:layout_constraintHorizontal_bias="0.02"
+                app:layout_constraintStart_toEndOf="@+id/img_selecionar_dia"
+                app:layout_constraintTop_toTopOf="@+id/img_selecionar_dia"
                 app:layout_constraintVertical_bias="0.428" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="até"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reservar__hora_inicioTxt"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/reservar_hora_finalTxt"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/btn_selecionar_hora_final"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="HH/MM"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/img_hora_final"
+                app:layout_constraintEnd_toEndOf="@+id/btn_selecionar_hora_inicio"
                 app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_hora_final"
+                app:layout_constraintTop_toTopOf="@+id/img_hora_final"
                 app:layout_constraintVertical_bias="0.613" />
 
-            <TextView
-                android:id="@+id/reservar__hora_inicioTxt"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/btn_selecionar_hora_inicio"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="HH/MM"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/btn_hora_inicio"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/img_hora_inicio"
+                app:layout_constraintEnd_toEndOf="@+id/btn_selecionar_dia"
                 app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_selecionar_dia"
+                app:layout_constraintStart_toEndOf="@+id/img_hora_inicio"
+                app:layout_constraintTop_toTopOf="@+id/img_hora_inicio"
                 app:layout_constraintVertical_bias="0.571" />
 
             <Button
@@ -138,6 +128,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.069" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_edit_field"
+                app:layout_constraintBottom_toBottomOf="@+id/reservar_campo_assunto"
+                app:layout_constraintEnd_toStartOf="@+id/reservar_campo_assunto"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/reservar_campo_assunto" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

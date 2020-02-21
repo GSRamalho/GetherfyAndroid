@@ -38,9 +38,7 @@ import com.guilherme.getherfy.Permissoes;
 import com.guilherme.getherfy.TimePickerFragment;
 import com.guilherme.getherfy.activity.fragment.SalaDetailInfoFragment;
 import com.guilherme.getherfy.activity.fragment.SalaDetailReservaFragment;
-import com.guilherme.getherfy.httpService.HttpServiceCadastro;
 import com.guilherme.getherfy.httpService.HttpServiceReservaCadastrar;
-import com.guilherme.getherfy.reserva.model.Reserva;
 import com.guilherme.getherfy.sala.model.Sala;
 import com.guilherme.presentation.R;
 
@@ -51,7 +49,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyCallback,
         DatePickerDialog.OnDateSetListener,
@@ -80,9 +77,9 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sala_detail);
 
-        TextView dia = findViewById(R.id.reservar_diaTxt);
-        TextView horaInicioTxt = findViewById(R.id.reservar__hora_inicioTxt);
-        TextView horaFimTxt = findViewById(R.id.reservar_hora_finalTxt);
+        Button btnDia = findViewById(R.id.btn_selecionar_dia);
+        Button btnHoraInicio = findViewById(R.id.btn_selecionar_hora_inicio);
+        Button btnHoraFim = findViewById(R.id.btn_selecionar_hora_final);
         TextView descricao = findViewById(R.id.reservar_campo_assunto);
 
         Sala sala = salaAtual();
@@ -159,15 +156,15 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
 
                 try {
 
-                    TextView dia = findViewById(R.id.reservar_diaTxt);
-                    TextView horaInicioTxt = findViewById(R.id.reservar__hora_inicioTxt);
-                    TextView horaFimTxt = findViewById(R.id.reservar_hora_finalTxt);
+                    Button btnDia = findViewById(R.id.btn_selecionar_dia);
+                    Button btnHoraInicio = findViewById(R.id.btn_selecionar_hora_inicio);
+                    Button btnHoraFim = findViewById(R.id.btn_selecionar_hora_final);
                     TextView descricao = findViewById(R.id.reservar_campo_assunto);
 
                     Sala sala = salaAtual();
                     String idOrganizador = preferences.getString("userId", null);
 
-                    formataHoras(horaInicioTxt, horaFimTxt);
+                    formataHoras(btnHoraInicio, btnHoraFim);
 
 
                     reservaJson.put("descricao", descricao.getText());
@@ -299,7 +296,7 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        TextView dia = findViewById(R.id.reservar_diaTxt);
+        Button btnDia = findViewById(R.id.btn_selecionar_dia);
 
         Calendar calendario = Calendar.getInstance();
         calendario.set(Calendar.YEAR, year);
@@ -308,15 +305,15 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
 
         String date = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendario.getTime());
 
-        dia.setText(String.format(date));
+        btnDia.setText(String.format(date));
 
 
     }
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        TextView horaInicioTxt = findViewById(R.id.reservar__hora_inicioTxt);
-        TextView horaFimTxt = findViewById(R.id.reservar_hora_finalTxt);
+        Button btnHoraInicio = findViewById(R.id.btn_selecionar_hora_inicio);
+        Button btnHoraFim = findViewById(R.id.btn_selecionar_hora_final);
         Boolean isHoraInicio = configHora.getBoolean("isHoraInicio", false);
         String horaFormatada;
         String minutoFormatado;
@@ -333,22 +330,22 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
 
         if (isHoraInicio) {
             String hora1 = horaFormatada + ":" + minutoFormatado;
-            horaInicioTxt.setText(hora1);
+            btnHoraInicio.setText(hora1);
         } else if (!isHoraInicio) {
             String hora2 = horaFormatada + ":" + minutoFormatado;
-            horaFimTxt.setText(hora2);
+            btnHoraFim.setText(hora2);
         }
 
 
     }
 
-    private void formataHoras(TextView horaInicioTxt, TextView horaFimTxt) {
+    private void formataHoras(Button btnHoraInicio, Button btnHoraFim) {
         SimpleDateFormat dateTimeFormat=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        TextView dia = findViewById(R.id.reservar_diaTxt);
+        Button btnSelecionarDia = findViewById(R.id.btn_selecionar_dia);
 
-        String dataStr = dia.getText().toString();
-        String horaInicioStr = horaInicioTxt.getText().toString();
-        String horaFimStr = horaFimTxt.getText().toString();
+        String dataStr = btnSelecionarDia.getText().toString();
+        String horaInicioStr = btnHoraInicio.getText().toString();
+        String horaFimStr = btnHoraFim.getText().toString();
         String dateTimeInicio = dataStr + " "+horaInicioStr+":00".trim();
         String dateTimeFim = dataStr + " "+horaFimStr+":00".trim();
 

@@ -70,7 +70,7 @@ public class SalaDetailReservaFragment extends Fragment {
             }
         });
 
-        ImageButton btnSelecionarDia = getView().findViewById(R.id.btn_selecionar_dia);
+        Button btnSelecionarDia = getView().findViewById(R.id.btn_selecionar_dia);
         btnSelecionarDia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +80,7 @@ public class SalaDetailReservaFragment extends Fragment {
             }
         });
 
-        ImageButton btnSelecionaHoraInicio = getView().findViewById(R.id.btn_hora_inicio);
+        Button btnSelecionaHoraInicio = getView().findViewById(R.id.btn_selecionar_hora_inicio);
         btnSelecionaHoraInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +94,7 @@ public class SalaDetailReservaFragment extends Fragment {
 
             }
         });
-        ImageButton btnSelecionaHoraFim = getView().findViewById(R.id.btn_hora_final);
+        Button btnSelecionaHoraFim = getView().findViewById(R.id.btn_selecionar_hora_final);
         btnSelecionaHoraFim.setOnClickListener(new View.OnClickListener() {
 
             @Override

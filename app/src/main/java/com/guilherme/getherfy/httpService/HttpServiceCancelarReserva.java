@@ -17,7 +17,7 @@ public class HttpServiceCancelarReserva extends AsyncTask <String, Void, String>
         try {
             URL url = new URL(urlWS);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
+            conn.setRequestMethod("POST");
             conn.setRequestProperty("authorization", "secret");
             conn.setRequestProperty("id_reserva", strings[0]);
             conn.setConnectTimeout(2000);

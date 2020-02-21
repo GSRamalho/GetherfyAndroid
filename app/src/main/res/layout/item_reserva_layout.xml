@@ -128,39 +128,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:visibility="gone">
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
+                <ImageButton
+                    android:id="@+id/fragment_item_reserva_cancelar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:background="#926C6D80"
+                    android:src="@drawable/ic_cancel_remove_item"
+                    android:visibility="visible" />
 
-                    <ImageButton
-                        android:id="@+id/fragment_item_reserva_cancelar"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#926C6D80"
-                        android:visibility="visible"
-                        app:srcCompat="@drawable/ic_cancel_remove_item" />
-                </LinearLayout>
-
-                <LinearLayout
+                <ImageButton
+                    android:id="@+id/fragment_item_reserva_remover"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:background="#CCFF0000"
+                    android:src="@drawable/ic_remove_item"
+                    android:visibility="visible" />
 
-                    <ImageButton
-                        android:id="@+id/fragment_item_reserva_remover"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#CCFF0000"
-                        android:visibility="visible"
-                        app:srcCompat="@drawable/ic_remove_item" />
-                </LinearLayout>
 
             </LinearLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

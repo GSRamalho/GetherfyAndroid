@@ -22,6 +22,7 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
     private boolean isSenhaVisivel=false;
     SharedPreferences preferences;
+    int request = 0;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -46,60 +47,66 @@ public class LoginActivity extends AppCompatActivity {
                             final String senhaString = senhaEt.getText().toString().trim();
 
 
+                            request++;
+                            if (request==1) {
                             String usuarioLogado = new HttpServiceLogin().execute(emailString, senhaString).get();
 
-                            if (usuarioLogado.length() > 0) {
-                                Toast.makeText(getApplicationContext(), "Login realizado com sucesso", Toast.LENGTH_LONG).show();
+                                if (usuarioLogado.length() > 0) {
+                                    Toast.makeText(getApplicationContext(), "Login realizado com sucesso", Toast.LENGTH_LONG).show();
 
-                                JSONObject usuarioJSON = new JSONObject(usuarioLogado);
+                                    JSONObject usuarioJSON = new JSONObject(usuarioLogado);
 
-                                if (usuarioJSON.has("email") && usuarioJSON.has("id") && usuarioJSON.has("nome") && usuarioJSON.has("idOrganizacao")) {
-                                    int id = usuarioJSON.getInt("id");
-                                    String nome = usuarioJSON.getString("nome");
-                                    String email = usuarioJSON.getString("email");
+                                    if (usuarioJSON.has("email") && usuarioJSON.has("id") && usuarioJSON.has("nome") && usuarioJSON.has("idOrganizacao")) {
+                                        int id = usuarioJSON.getInt("id");
+                                        String nome = usuarioJSON.getString("nome");
+                                        String email = usuarioJSON.getString("email");
 
-                                    JSONObject organizacao = usuarioJSON.getJSONObject("idOrganizacao");
-                                    String nomeOrganizacao = organizacao.getString("nome");
-                                    String tipoOrganizacao = organizacao.getString("tipoOrganizacao");
-                                    int idOrganizacao = organizacao.getInt("id");
+                                        JSONObject organizacao = usuarioJSON.getJSONObject("idOrganizacao");
+                                        String nomeOrganizacao = organizacao.getString("nome");
+                                        String tipoOrganizacao = organizacao.getString("tipoOrganizacao");
+                                        int idOrganizacao = organizacao.getInt("id");
 
+                                        Usuario usuarioAuth = new Usuario();
+                                        usuarioAuth.setId(id);
+                                        usuarioAuth.setNome(nome);
+                                        usuarioAuth.setEmail(email);
+                                        usuarioAuth.setIdOrganizacao(idOrganizacao);
 
-                                    Usuario usuarioAuth = new Usuario();
-                                    usuarioAuth.setId(id);
-                                    usuarioAuth.setNome(nome);
-                                    usuarioAuth.setEmail(email);
-                                    usuarioAuth.setIdOrganizacao(idOrganizacao);
+                                        Organizacao org = new Organizacao();
+                                        org.setId(idOrganizacao);
+                                        org.setNome(nomeOrganizacao);
+                                        org.setTipoOrganizacao(tipoOrganizacao);
 
-                                    Organizacao org = new Organizacao();
-                                    org.setId(idOrganizacao);
-                                    org.setNome(nomeOrganizacao);
-                                    org.setTipoOrganizacao(tipoOrganizacao);
+                                        //Refatorar
+                                        preferences = getSharedPreferences("USER_LOGIN", 0);
 
-                                    //Refatorar
-                                    preferences = getSharedPreferences("USER_LOGIN", 0);
+                                        SharedPreferences.Editor editor = preferences.edit();
 
-                                    SharedPreferences.Editor editor = preferences.edit();
+                                        editor.putString("userEmail", email);
+                                        editor.putString("userName", nome);
+                                        editor.putString("userId", Integer.toString(id));
+                                        editor.putString("userIdOrganizacao", Integer.toString(idOrganizacao));
+                                        editor.putString("userNomeEmpresa", nomeOrganizacao);
+                                        editor.putString("userTipoOrganizacao", tipoOrganizacao);
+                                        editor.commit();
+                                    }
+                                    System.out.println(preferences.getString("userEmail", null));
+                                    System.out.println(preferences.getString("userName", null));
+                                    System.out.println(preferences.getString("userId", null));
+                                    System.out.println(preferences.getString("userIdOrganizacao", null));
+                                    System.out.println(preferences.getString("userNomeEmpresa", null));
+                                    System.out.println(preferences.getString("userTipoEmpresa", null));
 
-                                    editor.putString("userEmail", email);
-                                    editor.putString("userName", nome);
-                                    editor.putString("userId", Integer.toString(id));
-                                    editor.putString("userIdOrganizacao", Integer.toString(idOrganizacao));
-                                    editor.putString("userNomeEmpresa", nomeOrganizacao);
-                                    editor.putString("userTipoOrganizacao", tipoOrganizacao);
-                                    editor.commit();
+                                    startActivity(new Intent(LoginActivity.this, AbasActivity.class));
+                                    finish();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Login inválido!", Toast.LENGTH_SHORT).show();
+                                    loginBtn.setEnabled(true);
                                 }
-                                System.out.println(preferences.getString("userEmail", null));
-                                System.out.println(preferences.getString("userName", null));
-                                System.out.println(preferences.getString("userId", null));
-                                System.out.println(preferences.getString("userIdOrganizacao", null));
-                                System.out.println(preferences.getString("userNomeEmpresa", null));
-                                System.out.println(preferences.getString("userTipoEmpresa", null));
+                                request=0;
+                            }else {
+                                Toast.makeText(getApplicationContext(), "Calma! Eu não penso tão rápido assim!", Toast.LENGTH_LONG).show();
 
-                                startActivity(new Intent(LoginActivity.this, AbasActivity.class));
-                                finish();
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Login inválido!", Toast.LENGTH_SHORT).show();
-                                loginBtn.setEnabled(true);
                             }
 
 

@@ -1,12 +1,12 @@
 package com.guilherme.getherfy.reserva.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,16 +14,15 @@ import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 
+import com.guilherme.getherfy.activity.AbasActivity;
 import com.guilherme.getherfy.activity.fragment.AtualizaLista;
-import com.guilherme.getherfy.httpService.HttpServiceLogin;
+import com.guilherme.getherfy.activity.fragment.ListaReservasFragment;
+import com.guilherme.getherfy.httpService.HttpServiceCancelarReserva;
+import com.guilherme.getherfy.httpService.HttpServiceReservasByOrganizacao;
 import com.guilherme.getherfy.reserva.model.Reserva;
 import com.guilherme.presentation.R;
 
-import org.w3c.dom.Text;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -33,6 +32,15 @@ public class ListaReservasAdapter extends BaseAdapter {
     private static int selecionado = -1;
     public AtualizaLista atualizaLista = null;
     private int idReserva;
+
+    public int getIdReserva() {
+        return idReserva;
+    }
+
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
+    }
+
 
     public ListaReservasAdapter(List<Reserva> reservas, Context context) {
         this.reservas = reservas;
@@ -58,6 +66,8 @@ public class ListaReservasAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
 
+
+
         final View viewCriada = LayoutInflater.from(context)
                 .inflate(R.layout.item_reserva_layout, parent, false);
         final Reserva reserva = reservas.get(position);
@@ -77,23 +87,45 @@ public class ListaReservasAdapter extends BaseAdapter {
         {
             linearLayout.setVisibility(View.VISIBLE);
 
+            ImageButton btnRemover = viewCriada.findViewById(R.id.fragment_item_reserva_remover);
             ImageButton btnCancelar = viewCriada.findViewById(R.id.fragment_item_reserva_cancelar);
+
+            btnCancelar.setClickable(true);
+            btnRemover.setClickable(true);
 
             btnCancelar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Log.e("CANCELAR", "Click");
+
                     linearLayout.setVisibility(View.GONE);
                 }
             });
 
-            ImageButton btnRemover = viewCriada.findViewById(R.id.fragment_item_reserva_remover);
+
             btnRemover.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    System.out.println(idReserva);
+                   linearLayout.setVisibility(View.GONE);
+                   String idReserva = String.valueOf(reserva.getId());
+                    ListaReservasFragment listaReservasFragment = new ListaReservasFragment();
+
+                    try {
+                        String respostaStr = new HttpServiceCancelarReserva().execute(idReserva).get();
+                        Toast.makeText(viewCriada.getContext(), respostaStr, Toast.LENGTH_LONG).show();
+
+                        ListaReservasFragment.setPrecisaConexao(true);
+                        atualizaLista.atualizarLista(true);
+
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    reserva.setAtivo(false);
                 }
             });
-
         }
         else
         {
@@ -107,10 +139,6 @@ public class ListaReservasAdapter extends BaseAdapter {
                 selecionado = position;
                 Log.e("Adapter", "Valor: " + selecionado);
                 atualizaLista.atualizarLista(true);
-
-
-                idReserva = reserva.getId();
-
 
 
                 return false;
@@ -132,15 +160,6 @@ public class ListaReservasAdapter extends BaseAdapter {
         data.setText(reserva.getDataHoraInicio());
 
 
-        final ImageButton btnRemover = viewCriada.findViewById(R.id.fragment_item_reserva_remover);
-
-        btnRemover.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnRemover.setVisibility(View.VISIBLE);
-
-            }
-        });
 
         return viewCriada;
     }
