@@ -24,7 +24,7 @@
 
     <EditText
         android:id="@+id/activity_cadastrar_email"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:ems="10"
@@ -38,12 +38,14 @@
 
     <EditText
         android:id="@+id/activity_cadastrar_nome"
-        android:layout_width="0dp"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
         android:ems="10"
         android:hint="Insira seu nome"
-        android:layout_marginHorizontal="40dp"
         android:inputType="textPersonName|textCapWords"
+        android:outlineProvider="paddedBounds"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,10 +55,10 @@
 
     <EditText
         android:id="@+id/activity_login_senha"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:layout_marginHorizontal="40dp"
+        android:ems="10"
         android:hint="Insira uma senha"
         android:inputType="textPersonName|textWebPassword"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,6 +73,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/botao"
         android:padding="8dp"
+        android:paddingHorizontal="10dp"
         android:text="CADASTRAR"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -98,7 +101,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/linkLogin"
-
         android:textColor="#0A1FA3"
         android:textSize="18dp"
         android:textStyle="bold"
@@ -159,5 +161,17 @@
         app:layout_constraintEnd_toStartOf="@+id/activity_cadastrar_email"
         app:layout_constraintTop_toTopOf="@+id/activity_cadastrar_email"
         app:srcCompat="@drawable/ic_email" />
+
+    <ImageButton
+        android:id="@+id/activity_cadastrar_btn_view_password"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_login_senha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/activity_login_senha"
+        app:layout_constraintTop_toTopOf="@+id/activity_login_senha"
+        app:srcCompat="@drawable/ic_view_password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

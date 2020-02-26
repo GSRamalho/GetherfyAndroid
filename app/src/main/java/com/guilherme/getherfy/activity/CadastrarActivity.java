@@ -31,9 +31,10 @@ import java.util.concurrent.ExecutionException;
 import static android.view.View.VISIBLE;
 
 public class CadastrarActivity extends AppCompatActivity {
-    Organizacao novaOrganizacao = new Organizacao();
-    List<Organizacao> listaDeOrganizacoes = new ArrayList<>();
-    boolean marcouOrganizacao = false;
+    private boolean isSenhaVisivel = false;
+    private Organizacao novaOrganizacao = new Organizacao();
+    private List<Organizacao> listaDeOrganizacoes = new ArrayList<>();
+    private boolean marcouOrganizacao = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +44,15 @@ public class CadastrarActivity extends AppCompatActivity {
         Button cadastrarBtn = findViewById(R.id.activity_cadastrar_btnCadastrar);
         ImageButton voltarBtn = findViewById(R.id.activity_cadastrar_voltarBtn);
         final EditText campoEmail = findViewById(R.id.activity_cadastrar_email);
+        final EditText campoSenha = findViewById(R.id.activity_login_senha);
 
+        configuraBtnOlharSenha(campoSenha);
 
         cadastrarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 EditText campoNome = findViewById(R.id.activity_cadastrar_nome);
-                EditText campoSenha = findViewById(R.id.activity_login_senha);
 
                 String eMail = campoEmail.getText().toString().trim();
                 String name = campoNome.getText().toString().trim();
@@ -188,6 +190,24 @@ public class CadastrarActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+    private void configuraBtnOlharSenha(final TextView senhaEt) {
+        ImageButton btnViewPassword = findViewById(R.id.activity_cadastrar_btn_view_password);
+
+
+        btnViewPassword.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (!isSenhaVisivel) {
+                    senhaEt.setInputType(128);
+                    isSenhaVisivel = true;
+                } else if (isSenhaVisivel) {
+                    senhaEt.setInputType(225);
+                    isSenhaVisivel = false;
+                }
+            }
+        });
     }
 
     private void alertaDeConflitoOrganizacoes(final String[] organizacoes, final int[] idOrganizacoes) {

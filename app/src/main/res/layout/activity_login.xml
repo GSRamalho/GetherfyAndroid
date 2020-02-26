@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
     tools:context="com.guilherme.getherfy.activity.LoginActivity">
 
     <ImageButton
@@ -19,7 +20,7 @@
 
     <EditText
         android:id="@+id/activity_login_senha"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:ems="10"
@@ -33,11 +34,11 @@
 
     <EditText
         android:id="@+id/activity_login_email"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
         android:ems="10"
         android:hint="Insira seu email"
-        android:layout_marginHorizontal="40dp"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/botao"
-        android:padding="8dp"
+        android:paddingHorizontal="10dp"
         android:text="ENTRAR"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,12 +89,14 @@
         app:layout_constraintTop_toBottomOf="@+id/activity_cadastrar_btnLogin" />
 
     <ImageButton
-        android:id="@+id/activity_login_view_passoword"
+        android:id="@+id/activity_login_btn_view_password"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:background="@null"
         app:layout_constraintBottom_toBottomOf="@+id/activity_login_senha"
-        app:layout_constraintEnd_toEndOf="@+id/activity_login_senha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/activity_login_senha"
         app:layout_constraintTop_toTopOf="@+id/activity_login_senha"
         app:layout_constraintVertical_bias="0.521"
         app:srcCompat="@drawable/ic_view_password" />
@@ -113,6 +116,8 @@
         android:layout_height="25dp"
         app:layout_constraintBottom_toBottomOf="@+id/activity_login_email"
         app:layout_constraintEnd_toStartOf="@+id/activity_login_email"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/activity_login_email"
         app:srcCompat="@drawable/ic_email" />
 
