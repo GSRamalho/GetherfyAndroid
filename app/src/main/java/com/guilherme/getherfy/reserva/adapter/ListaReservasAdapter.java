@@ -80,6 +80,16 @@ public class ListaReservasAdapter extends BaseAdapter {
         TextView organizador = viewCriada.findViewById(R.id.fragment_item_reserva_organizador);
         organizador.setText(reserva.getNomeOrganizador());
 
+        TextView localizacao = viewCriada.findViewById(R.id.fragment_item_reserva_localizacao);
+        localizacao.setText(reserva.getNomeSala());
+
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        TextView data = viewCriada.findViewById(R.id.fragment_item_reserva_dia);
+        data.setText(reserva.getDataHoraInicio());
+
+
         CardView cardView = viewCriada.findViewById(R.id.item_reserva_cardview);
         final LinearLayout linearLayout = viewCriada.findViewById(R.id.item_reserva_layout_options);
 
@@ -148,16 +158,6 @@ public class ListaReservasAdapter extends BaseAdapter {
 
         });
 
-
-/*
-        TextView localizacao = viewCriada.findViewById(R.id.fragment_item_reserva_localizacao);
-        localizacao.setText(reserva.getSala());*/
-
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-        TextView data = viewCriada.findViewById(R.id.fragment_item_reserva_dia);
-        data.setText(reserva.getDataHoraInicio());
 
 
 

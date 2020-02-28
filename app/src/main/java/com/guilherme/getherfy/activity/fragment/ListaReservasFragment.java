@@ -75,6 +75,7 @@ public class ListaReservasFragment extends Fragment implements AtualizaLista {
             try {
 
                 JSONArray listaJson = new JSONArray(listaStr);
+                System.out.println(listaStr);
                 if (listaJson.length() > 0) {
                     for (int i = 0; i < listaJson.length(); i++) {
                         Reserva novaReserva = new Reserva();
@@ -92,6 +93,7 @@ public class ListaReservasFragment extends Fragment implements AtualizaLista {
                             boolean ativo = reservaObj.getBoolean("ativo");
                             String descricao = reservaObj.getString("descricao");
                             String nomeOrganizador = reservaObj.getString("nomeOrganizador");
+                            String nomeSala= reservaObj.getString("nomeSala");
 
 
                             novaReserva.setId(id);
@@ -102,6 +104,7 @@ public class ListaReservasFragment extends Fragment implements AtualizaLista {
                             novaReserva.setOrganizador(idUsuario);
                             novaReserva.setDescricao(descricao);
                             novaReserva.setAtivo(ativo);
+                            novaReserva.setNomeSala(nomeSala);
 
 
                             reservas.add(novaReserva);
