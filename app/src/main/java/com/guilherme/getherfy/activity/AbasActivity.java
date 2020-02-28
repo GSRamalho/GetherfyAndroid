@@ -34,7 +34,8 @@ public class AbasActivity extends AppCompatActivity {
     private ViewPager viewPager;
     SharedPreferences preferences;
 
-    public String idOrganizacao;
+    public static String idOrganizacao;
+    public static String idUsuario;
 
 
     public String getIdOrganizacao() {
@@ -56,6 +57,7 @@ public class AbasActivity extends AppCompatActivity {
         final SharedPreferences.Editor editor = preferences.edit();
 
         idOrganizacao = preferences.getString("userIdOrganizacao", null);
+        idUsuario = preferences.getString("userId", null);
         Log.e("AbasActivity", idOrganizacao);
 
         final ImageButton botaoPerfil = findViewById(R.id.activity_abas_perfilBtn);

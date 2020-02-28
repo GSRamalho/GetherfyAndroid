@@ -34,6 +34,11 @@ public class ListaReservasAdapter extends BaseAdapter {
     private static int selecionado = -1;
     public AtualizaLista atualizaLista = null;
     private int idReserva;
+    private String usuarioLogado = AbasActivity.idUsuario;
+    private int logadoId = Integer.parseInt(usuarioLogado);
+
+
+
 
     public int getIdReserva() {
         return idReserva;
@@ -90,51 +95,53 @@ public class ListaReservasAdapter extends BaseAdapter {
 
         configuraDataHora(reserva, data, horaInicio, horaFim);
 
-        if (position == selecionado) {
-            linearLayout.setVisibility(View.VISIBLE);
+        if(reserva.getOrganizador()==logadoId) {
+            if (position == selecionado) {
+                linearLayout.setVisibility(View.VISIBLE);
 
-            ImageButton btnRemover = viewCriada.findViewById(R.id.fragment_item_reserva_remover);
-            ImageButton btnCancelar = viewCriada.findViewById(R.id.fragment_item_reserva_cancelar);
+                ImageButton btnRemover = viewCriada.findViewById(R.id.fragment_item_reserva_remover);
+                ImageButton btnCancelar = viewCriada.findViewById(R.id.fragment_item_reserva_cancelar);
 
-            btnCancelar.setClickable(true);
-            btnRemover.setClickable(true);
+                btnCancelar.setClickable(true);
+                btnRemover.setClickable(true);
 
-            btnCancelar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.e("CANCELAR", "Click");
+                btnCancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.e("CANCELAR", "Click");
 
-                    linearLayout.setVisibility(View.GONE);
-                }
-            });
-
-
-            btnRemover.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    linearLayout.setVisibility(View.GONE);
-                    String idReserva = String.valueOf(reserva.getId());
-                    ListaReservasFragment listaReservasFragment = new ListaReservasFragment();
-
-                    try {
-                        String respostaStr = new HttpServiceCancelarReserva().execute(idReserva).get();
-                        Toast.makeText(viewCriada.getContext(), respostaStr, Toast.LENGTH_LONG).show();
-
-                        ListaReservasFragment.setPrecisaConexao(true);
-                        atualizaLista.atualizarLista(true);
-
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        linearLayout.setVisibility(View.GONE);
                     }
+                });
 
-                    reserva.setAtivo(false);
-                }
-            });
-        } else {
-            linearLayout.setVisibility(View.GONE);
 
+                btnRemover.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        linearLayout.setVisibility(View.GONE);
+                        String idReserva = String.valueOf(reserva.getId());
+                        ListaReservasFragment listaReservasFragment = new ListaReservasFragment();
+
+                        try {
+                            String respostaStr = new HttpServiceCancelarReserva().execute(idReserva).get();
+                            Toast.makeText(viewCriada.getContext(), respostaStr, Toast.LENGTH_LONG).show();
+
+                            ListaReservasFragment.setPrecisaConexao(true);
+                            atualizaLista.atualizarLista(true);
+
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        reserva.setAtivo(false);
+                    }
+                });
+            } else {
+                linearLayout.setVisibility(View.GONE);
+
+            }
         }
 
         cardView.setOnLongClickListener(new View.OnLongClickListener() {
