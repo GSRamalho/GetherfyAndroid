@@ -43,31 +43,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/activity_lista_salas_toolbar" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/foto_redonda"
-            android:shape="ring"
-            app:cardCornerRadius="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/activity_lista_salas_toolbar_nomeDaOrganizacao"
-            app:layout_constraintHorizontal_bias="0.2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageButton
-                android:id="@+id/activity_abas_perfilBtn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/foto_redonda"
-                android:cropToPadding="true"
-                android:layout_margin="2dp"
-                android:foreground="@drawable/foto_redonda"
-                android:scaleType="centerCrop"
-                android:shape="ring"
-                app:srcCompat="@drawable/ic_user_default" />
-        </androidx.cardview.widget.CardView>
-
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
@@ -79,6 +54,21 @@
             app:layout_constraintStart_toEndOf="@+id/activity_lista_salas_toolbar_nomeDaOrganizacao"
             app:layout_constraintTop_toTopOf="@+id/activity_lista_salas_toolbar_nomeDaOrganizacao"
             app:srcCompat="@drawable/ic_filter" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/activity_abas_perfilBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            app:backgroundTint="#FFFFFF"
+            app:fabCustomSize="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/activity_lista_salas_toolbar_nomeDaOrganizacao"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/user_default" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
