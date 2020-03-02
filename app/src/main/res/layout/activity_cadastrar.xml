@@ -71,7 +71,7 @@
         android:id="@+id/activity_cadastrar_btnCadastrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/botao"
+        android:background="@drawable/rounded_button_style"
         android:padding="8dp"
         android:paddingHorizontal="10dp"
         android:text="CADASTRAR"

@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
@@ -14,8 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.guilherme.getherfy.DatePickerFragment;
-import com.guilherme.getherfy.TimePickerFragment;
+import com.guilherme.getherfy.activity.fragment.DateTimePicker.DatePickerFragment;
+import com.guilherme.getherfy.activity.fragment.DateTimePicker.TimePickerFragment;
 import com.guilherme.getherfy.activity.SalaDetailActivity;
 import com.guilherme.presentation.R;
 
