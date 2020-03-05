@@ -12,8 +12,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.guilherme.getherfy.httpService.HttpServiceLogin;
-import com.guilherme.getherfy.organizacao.model.Organizacao;
-import com.guilherme.getherfy.usuario.model.Usuario;
+import com.guilherme.getherfy.model.Organizacao;
+import com.guilherme.getherfy.model.Usuario;
 import com.guilherme.presentation.R;
 
 import org.json.JSONObject;

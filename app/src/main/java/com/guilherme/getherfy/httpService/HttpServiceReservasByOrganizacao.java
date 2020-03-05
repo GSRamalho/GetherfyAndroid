@@ -1,17 +1,10 @@
 package com.guilherme.getherfy.httpService;
 
-import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.guilherme.getherfy.activity.fragment.ListaReservasFragment;
-import com.guilherme.presentation.R;
+import com.guilherme.getherfy.activity.fragment.abasActivityFragments.ListaReservasFragment;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;

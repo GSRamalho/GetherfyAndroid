@@ -1,10 +1,9 @@
-package com.guilherme.getherfy.activity.fragment.DateTimePicker;
+package com.guilherme.getherfy.activity.fragment.dateTimePickerFragments;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

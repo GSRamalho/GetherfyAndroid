@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.sala.adapter;
+package com.guilherme.getherfy.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,9 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.guilherme.getherfy.activity.fragment.ListaSalasFragment;
 import com.guilherme.presentation.R;
-import com.guilherme.getherfy.sala.model.Sala;
+import com.guilherme.getherfy.model.Sala;
 
 import java.util.List;
 

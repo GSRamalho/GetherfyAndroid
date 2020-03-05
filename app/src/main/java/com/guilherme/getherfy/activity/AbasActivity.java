@@ -1,26 +1,21 @@
 package com.guilherme.getherfy.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.viewpager.widget.ViewPager;
 
-import com.guilherme.getherfy.activity.fragment.ListaReservasFragment;
-import com.guilherme.getherfy.activity.fragment.ListaSalasFragment;
+import com.guilherme.getherfy.activity.fragment.abasActivityFragments.ListaReservasFragment;
+import com.guilherme.getherfy.activity.fragment.abasActivityFragments.ListaSalasFragment;
 import com.guilherme.presentation.R;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;

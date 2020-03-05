@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.activity.fragment;
+package com.guilherme.getherfy.activity.fragment.salaDetailFragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.guilherme.getherfy.activity.fragment.DateTimePicker.DatePickerFragment;
-import com.guilherme.getherfy.activity.fragment.DateTimePicker.TimePickerFragment;
+import com.guilherme.getherfy.activity.fragment.dateTimePickerFragments.DatePickerFragment;
+import com.guilherme.getherfy.activity.fragment.dateTimePickerFragments.TimePickerFragment;
 import com.guilherme.getherfy.activity.SalaDetailActivity;
 import com.guilherme.presentation.R;
 

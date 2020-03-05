@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.activity.fragment;
+package com.guilherme.getherfy.activity.fragment.abasActivityFragments;
 
 
 import android.os.Bundle;
@@ -13,9 +13,9 @@ import androidx.fragment.app.Fragment;
 
 import com.guilherme.getherfy.activity.AbasActivity;
 import com.guilherme.getherfy.httpService.HttpServiceReservasByOrganizacao;
-import com.guilherme.getherfy.reserva.adapter.ListaReservasAdapter;
-import com.guilherme.getherfy.reserva.dao.ReservaDAO;
-import com.guilherme.getherfy.reserva.model.Reserva;
+import com.guilherme.getherfy.adapter.ListaReservasAdapter;
+import com.guilherme.getherfy.dao.ReservaDAO;
+import com.guilherme.getherfy.model.Reserva;
 import com.guilherme.presentation.R;
 
 import org.json.JSONArray;

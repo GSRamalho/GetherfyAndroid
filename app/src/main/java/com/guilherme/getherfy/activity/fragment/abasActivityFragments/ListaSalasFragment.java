@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.activity.fragment;
+package com.guilherme.getherfy.activity.fragment.abasActivityFragments;
 
 
 import android.content.Intent;
@@ -15,9 +15,9 @@ import androidx.fragment.app.Fragment;
 
 import com.guilherme.getherfy.activity.SalaDetailActivity;
 import com.guilherme.getherfy.httpService.HttpServiceSalasByIdOrganizacao;
-import com.guilherme.getherfy.sala.adapter.ListaSalasAdapter;
-import com.guilherme.getherfy.sala.dao.SalaDAO;
-import com.guilherme.getherfy.sala.model.Sala;
+import com.guilherme.getherfy.adapter.ListaSalasAdapter;
+import com.guilherme.getherfy.dao.SalaDAO;
+import com.guilherme.getherfy.model.Sala;
 import com.guilherme.presentation.R;
 
 import org.json.JSONArray;

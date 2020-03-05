@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
-    tools:context="com.guilherme.getherfy.activity.fragment.SalaDetailReservaFragment">
+    tools:context="com.guilherme.getherfy.activity.fragment.salaDetailFragments.SalaDetailReservaFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"

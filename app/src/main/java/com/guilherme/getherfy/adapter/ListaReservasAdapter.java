@@ -1,7 +1,6 @@
-package com.guilherme.getherfy.reserva.adapter;
+package com.guilherme.getherfy.adapter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +14,10 @@ import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 
 import com.guilherme.getherfy.activity.AbasActivity;
-import com.guilherme.getherfy.activity.fragment.AtualizaLista;
-import com.guilherme.getherfy.activity.fragment.ListaReservasFragment;
+import com.guilherme.getherfy.activity.fragment.abasActivityFragments.AtualizaLista;
+import com.guilherme.getherfy.activity.fragment.abasActivityFragments.ListaReservasFragment;
 import com.guilherme.getherfy.httpService.HttpServiceCancelarReserva;
-import com.guilherme.getherfy.httpService.HttpServiceReservasByOrganizacao;
-import com.guilherme.getherfy.reserva.model.Reserva;
+import com.guilherme.getherfy.model.Reserva;
 import com.guilherme.presentation.R;
 
 import java.text.ParseException;

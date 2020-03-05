@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.organizacao.model;
+package com.guilherme.getherfy.model;
 
 import java.util.Date;
 

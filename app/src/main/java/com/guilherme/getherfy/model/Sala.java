@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.sala.model;
+package com.guilherme.getherfy.model;
 
 
 import java.io.Serializable;
