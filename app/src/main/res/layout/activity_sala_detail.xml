@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.guilherme.getherfy.activity.SalaDetailActivity">
+    tools:context="com.guilherme.getherfy.ui.SalaDetailActivity">
 
     <fragment
         android:id="@+id/map"
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:context="com.guilherme.getherfy.activity.MapsActivity" />
+        tools:context="com.guilherme.getherfy.ui.MapsActivity" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/activity_info_sala_toolbar"

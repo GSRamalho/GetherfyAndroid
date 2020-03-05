@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.activity.fragment.abasActivityFragments;
+package com.guilherme.getherfy.ui.fragments.abas;
 
 
 import android.content.Intent;
@@ -13,11 +13,11 @@ import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
-import com.guilherme.getherfy.activity.SalaDetailActivity;
+import com.guilherme.getherfy.ui.SalaDetailActivity;
 import com.guilherme.getherfy.httpService.HttpServiceSalasByIdOrganizacao;
 import com.guilherme.getherfy.adapter.ListaSalasAdapter;
 import com.guilherme.getherfy.dao.SalaDAO;
-import com.guilherme.getherfy.model.Sala;
+import com.guilherme.getherfy.models.Sala;
 import com.guilherme.presentation.R;
 
 import org.json.JSONArray;

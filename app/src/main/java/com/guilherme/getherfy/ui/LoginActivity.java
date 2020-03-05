@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.activity;
+package com.guilherme.getherfy.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,8 +12,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.guilherme.getherfy.httpService.HttpServiceLogin;
-import com.guilherme.getherfy.model.Organizacao;
-import com.guilherme.getherfy.model.Usuario;
+import com.guilherme.getherfy.models.Organizacao;
+import com.guilherme.getherfy.models.Usuario;
 import com.guilherme.presentation.R;
 
 import org.json.JSONObject;
@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         voltarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, PrimeiraTelaActivity.class));
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
             }
         });

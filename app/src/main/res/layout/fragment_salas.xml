@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.guilherme.getherfy.activity.fragment.abasActivityFragments.ListaSalasFragment">
+    tools:context="com.guilherme.getherfy.ui.fragments.abas.ListaSalasFragment">
 
     <ListView
     android:id="@+id/fragment_salas_lista"

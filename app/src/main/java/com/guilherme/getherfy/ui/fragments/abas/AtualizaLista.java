@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.activity.fragment.abasActivityFragments;
+package com.guilherme.getherfy.ui.fragments.abas;
 
 public interface AtualizaLista {
     void atualizarLista(boolean id);

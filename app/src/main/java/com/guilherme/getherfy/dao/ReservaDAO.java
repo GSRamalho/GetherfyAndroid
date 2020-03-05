@@ -1,6 +1,6 @@
 package com.guilherme.getherfy.dao;
 
-import com.guilherme.getherfy.model.Reserva;
+import com.guilherme.getherfy.models.Reserva;
 
 import java.util.ArrayList;
 import java.util.List;

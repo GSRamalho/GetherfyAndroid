@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.activity;
+package com.guilherme.getherfy.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.guilherme.presentation.R;
 
-public class PrimeiraTelaActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
     SharedPreferences preferences;
 
     @Override
@@ -26,7 +26,7 @@ public class PrimeiraTelaActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PrimeiraTelaActivity.this, LoginActivity.class));
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
             }
         });
@@ -34,7 +34,7 @@ public class PrimeiraTelaActivity extends AppCompatActivity {
         cadastrarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PrimeiraTelaActivity.this, CadastrarActivity.class));
+                startActivity(new Intent(MainActivity.this, CadastroActivity.class));
 
             }
         });
@@ -44,7 +44,7 @@ public class PrimeiraTelaActivity extends AppCompatActivity {
         preferences = getSharedPreferences("USER_LOGIN", 0);
 
         if (preferences.getString("userEmail", null) != null) {
-            startActivity(new Intent(PrimeiraTelaActivity.this, AbasActivity.class));
+            startActivity(new Intent(MainActivity.this, AbasActivity.class));
             finish();
         }
     }

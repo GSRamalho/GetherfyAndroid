@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.activity;
+package com.guilherme.getherfy.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.viewpager.widget.ViewPager;
 
-import com.guilherme.getherfy.activity.fragment.abasActivityFragments.ListaReservasFragment;
-import com.guilherme.getherfy.activity.fragment.abasActivityFragments.ListaSalasFragment;
+import com.guilherme.getherfy.ui.fragments.abas.ListaReservasFragment;
+import com.guilherme.getherfy.ui.fragments.abas.ListaSalasFragment;
 import com.guilherme.presentation.R;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
@@ -28,7 +28,6 @@ public class AbasActivity extends AppCompatActivity {
     private SmartTabLayout smartTabLayout;
     private ViewPager viewPager;
     SharedPreferences preferences;
-
     public static String idOrganizacao;
     public static String idUsuario;
 
@@ -59,12 +58,10 @@ public class AbasActivity extends AppCompatActivity {
 
 
         botaoPerfil.setOnClickListener(new View.OnClickListener() {
-            boolean podeAperta = true;
 
             @Override
             public void onClick(View v) {
 
-                if (podeAperta) {
 
 
                     PopupMenu menu = new PopupMenu(AbasActivity.this, botaoPerfil);
@@ -102,7 +99,6 @@ public class AbasActivity extends AppCompatActivity {
                     menu.show();
                 }
 
-            }
         });
 
         TextView nomeEmpresa = findViewById(R.id.activity_lista_salas_toolbar_nomeDaOrganizacao);

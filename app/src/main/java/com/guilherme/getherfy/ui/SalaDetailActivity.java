@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.activity;
+package com.guilherme.getherfy.ui;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
@@ -33,13 +33,13 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.guilherme.getherfy.activity.fragment.dateTimePickerFragments.DatePickerFragment;
-import com.guilherme.getherfy.activity.fragment.dateTimePickerFragments.TimePickerFragment;
-import com.guilherme.getherfy.activity.fragment.salaDetailFragments.SalaDetailInfoFragment;
-import com.guilherme.getherfy.activity.fragment.salaDetailFragments.SalaDetailReservaFragment;
+import com.guilherme.getherfy.ui.fragments.dateTime.DatePickerFragment;
+import com.guilherme.getherfy.ui.fragments.dateTime.TimePickerFragment;
+import com.guilherme.getherfy.ui.fragments.salaDetail.SalaDetailInfoFragment;
+import com.guilherme.getherfy.ui.fragments.salaDetail.SalaDetailReservaFragment;
 import com.guilherme.getherfy.httpService.HttpServiceReservaCadastrar;
-import com.guilherme.getherfy.model.Sala;
-import com.guilherme.getherfy.permissoes.Permissoes;
+import com.guilherme.getherfy.models.Sala;
+import com.guilherme.getherfy.utils.Permissoes;
 import com.guilherme.presentation.R;
 
 import org.json.JSONObject;
@@ -54,12 +54,7 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
         DatePickerDialog.OnDateSetListener,
         TimePickerDialog.OnTimeSetListener {
 
-    DialogFragment datePicker = new DatePickerFragment();
-    DialogFragment timePicker = new TimePickerFragment();
     SharedPreferences configHora;
-
-
-    Dialog novaReservaPopUp;
     private boolean novaReservaVisivel = true;
     private GoogleMap mMap;
     SharedPreferences preferences;
@@ -77,13 +72,7 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sala_detail);
 
-        Button btnDia = findViewById(R.id.btn_selecionar_dia);
-        Button btnHoraInicio = findViewById(R.id.btn_selecionar_hora_inicio);
-        Button btnHoraFim = findViewById(R.id.btn_selecionar_hora_final);
-        TextView descricao = findViewById(R.id.reservar_campo_assunto);
-
         Sala sala = salaAtual();
-
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -152,11 +141,9 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
             @Override
             public void onClick(View v) {
                 JSONObject reservaJson = new JSONObject();
-                String organizador = preferences.getString("userName", null);
 
                 try {
 
-                    Button btnDia = findViewById(R.id.btn_selecionar_dia);
                     Button btnHoraInicio = findViewById(R.id.btn_selecionar_hora_inicio);
                     Button btnHoraFim = findViewById(R.id.btn_selecionar_hora_final);
                     TextView descricao = findViewById(R.id.reservar_campo_assunto);
@@ -314,7 +301,7 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         Button btnHoraInicio = findViewById(R.id.btn_selecionar_hora_inicio);
         Button btnHoraFim = findViewById(R.id.btn_selecionar_hora_final);
-        Boolean isHoraInicio = configHora.getBoolean("isHoraInicio", false);
+        boolean isHoraInicioSelecionada = SalaDetailReservaFragment.isHoraInicioSelecionada;
         String horaFormatada;
         String minutoFormatado;
 
@@ -328,10 +315,10 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
             minutoFormatado = "0"+minute;
         }
 
-        if (isHoraInicio) {
+        if (isHoraInicioSelecionada) {
             String hora1 = horaFormatada + ":" + minutoFormatado;
             btnHoraInicio.setText(hora1);
-        } else if (!isHoraInicio) {
+        } else if (!isHoraInicioSelecionada) {
             String hora2 = horaFormatada + ":" + minutoFormatado;
             btnHoraFim.setText(hora2);
         }

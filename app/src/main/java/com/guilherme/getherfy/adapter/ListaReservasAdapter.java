@@ -13,11 +13,11 @@ import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 
-import com.guilherme.getherfy.activity.AbasActivity;
-import com.guilherme.getherfy.activity.fragment.abasActivityFragments.AtualizaLista;
-import com.guilherme.getherfy.activity.fragment.abasActivityFragments.ListaReservasFragment;
+import com.guilherme.getherfy.ui.AbasActivity;
+import com.guilherme.getherfy.ui.fragments.abas.AtualizaLista;
+import com.guilherme.getherfy.ui.fragments.abas.ListaReservasFragment;
 import com.guilherme.getherfy.httpService.HttpServiceCancelarReserva;
-import com.guilherme.getherfy.model.Reserva;
+import com.guilherme.getherfy.models.Reserva;
 import com.guilherme.presentation.R;
 
 import java.text.ParseException;

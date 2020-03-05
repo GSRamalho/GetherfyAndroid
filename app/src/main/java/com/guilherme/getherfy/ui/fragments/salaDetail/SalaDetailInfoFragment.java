@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.activity.fragment.salaDetailFragments;
+package com.guilherme.getherfy.ui.fragments.salaDetail;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.guilherme.getherfy.model.Sala;
+import com.guilherme.getherfy.models.Sala;
 import com.guilherme.presentation.R;
 
 

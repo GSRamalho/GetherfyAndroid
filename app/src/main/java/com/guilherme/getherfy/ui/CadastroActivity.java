@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.activity;
+package com.guilherme.getherfy.ui;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.guilherme.getherfy.httpService.HttpServiceCadastro;
 import com.guilherme.getherfy.httpService.HttpServiceOrganizacaoByDominio;
-import com.guilherme.getherfy.model.Organizacao;
+import com.guilherme.getherfy.models.Organizacao;
 import com.guilherme.presentation.R;
 
 import org.json.JSONArray;
@@ -30,7 +30,7 @@ import java.util.concurrent.ExecutionException;
 
 import static android.view.View.VISIBLE;
 
-public class CadastrarActivity extends AppCompatActivity {
+public class CadastroActivity extends AppCompatActivity {
     private boolean isSenhaVisivel = false;
     private Organizacao novaOrganizacao = new Organizacao();
     private List<Organizacao> listaDeOrganizacoes = new ArrayList<>();
@@ -40,7 +40,7 @@ public class CadastrarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastrar);
+        setContentView(R.layout.activity_cadastro);
         Button cadastrarBtn = findViewById(R.id.activity_cadastrar_btnCadastrar);
         ImageButton voltarBtn = findViewById(R.id.activity_cadastrar_voltarBtn);
         final EditText campoEmail = findViewById(R.id.activity_cadastrar_email);
@@ -76,7 +76,7 @@ public class CadastrarActivity extends AppCompatActivity {
                     mostraMensagem(mensagem);
 
                     if (mensagem.equalsIgnoreCase("Usuário criado com sucesso")) {
-                        startActivity(new Intent(CadastrarActivity.this, LoginActivity.class));
+                        startActivity(new Intent(CadastroActivity.this, LoginActivity.class));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -111,7 +111,7 @@ public class CadastrarActivity extends AppCompatActivity {
         voltarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CadastrarActivity.this, PrimeiraTelaActivity.class));
+                startActivity(new Intent(CadastroActivity.this, MainActivity.class));
                 finish();
             }
         });
@@ -263,7 +263,7 @@ public class CadastrarActivity extends AppCompatActivity {
     }
 
     private void chamaActivityLogin() {
-        startActivity(new Intent(CadastrarActivity.this, LoginActivity.class));
+        startActivity(new Intent(CadastroActivity.this, LoginActivity.class));
         finish();
     }
 

@@ -7,7 +7,7 @@
     android:background="#FFFFFF"
     android:orientation="vertical"
     android:theme="@style/AppTheme2"
-    tools:context="com.guilherme.getherfy.activity.AbasActivity">
+    tools:context="com.guilherme.getherfy.ui.AbasActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"

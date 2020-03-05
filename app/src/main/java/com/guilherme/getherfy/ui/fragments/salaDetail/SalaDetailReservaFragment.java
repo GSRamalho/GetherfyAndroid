@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.activity.fragment.salaDetailFragments;
+package com.guilherme.getherfy.ui.fragments.salaDetail;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,15 +13,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.guilherme.getherfy.activity.fragment.dateTimePickerFragments.DatePickerFragment;
-import com.guilherme.getherfy.activity.fragment.dateTimePickerFragments.TimePickerFragment;
-import com.guilherme.getherfy.activity.SalaDetailActivity;
+import com.guilherme.getherfy.ui.fragments.dateTime.DatePickerFragment;
+import com.guilherme.getherfy.ui.fragments.dateTime.TimePickerFragment;
+import com.guilherme.getherfy.ui.SalaDetailActivity;
 import com.guilherme.presentation.R;
 
 public class SalaDetailReservaFragment extends Fragment {
     DialogFragment datePicker = new DatePickerFragment();
     DialogFragment timePicker = new TimePickerFragment();
     SharedPreferences configHora;
+    public static boolean isHoraInicioSelecionada;
 
 
     // TODO: Rename and change types and number of parameters
@@ -84,12 +85,9 @@ public class SalaDetailReservaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 timePicker.show(getFragmentManager(), "Time Picker");
-                boolean isHoraInicio;
 
-                SharedPreferences.Editor editor = configHora.edit();
-                isHoraInicio = true;
+                isHoraInicioSelecionada = true;
 
-                editor.putBoolean("isHoraInicio", isHoraInicio).commit();
 
             }
         });
@@ -99,12 +97,9 @@ public class SalaDetailReservaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 timePicker.show(getFragmentManager(), "Time Picker");
-                boolean isHoraInicio;
 
-                SharedPreferences.Editor editor = configHora.edit();
-                isHoraInicio = false;
+                isHoraInicioSelecionada = false;
 
-                editor.putBoolean("isHoraInicio", isHoraInicio).commit();
 
             }
 

@@ -4,7 +4,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.guilherme.getherfy.activity.fragment.salaDetailFragments.SalaDetailInfoFragment">
+    tools:context="com.guilherme.getherfy.ui.fragments.salaDetail.SalaDetailInfoFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/activity_info_sala_cardview"

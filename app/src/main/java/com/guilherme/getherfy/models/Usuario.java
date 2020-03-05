@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.model;
+package com.guilherme.getherfy.models;
 
 public class Usuario {
 

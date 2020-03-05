@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.activity.fragment.abasActivityFragments;
+package com.guilherme.getherfy.ui.fragments.abas;
 
 
 import android.os.Bundle;
@@ -11,11 +11,11 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.guilherme.getherfy.activity.AbasActivity;
+import com.guilherme.getherfy.ui.AbasActivity;
 import com.guilherme.getherfy.httpService.HttpServiceReservasByOrganizacao;
 import com.guilherme.getherfy.adapter.ListaReservasAdapter;
 import com.guilherme.getherfy.dao.ReservaDAO;
-import com.guilherme.getherfy.model.Reserva;
+import com.guilherme.getherfy.models.Reserva;
 import com.guilherme.presentation.R;
 
 import org.json.JSONArray;

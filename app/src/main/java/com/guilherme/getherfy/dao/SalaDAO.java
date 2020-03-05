@@ -1,6 +1,6 @@
 package com.guilherme.getherfy.dao;
 
-import com.guilherme.getherfy.model.Sala;
+import com.guilherme.getherfy.models.Sala;
 
 import java.util.ArrayList;
 import java.util.List;

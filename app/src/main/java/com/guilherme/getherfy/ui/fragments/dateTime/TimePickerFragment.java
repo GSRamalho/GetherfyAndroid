@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.activity.fragment.dateTimePickerFragments;
+package com.guilherme.getherfy.ui.fragments.dateTime;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;

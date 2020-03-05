@@ -1,7 +1,6 @@
-package com.guilherme.getherfy.model;
+package com.guilherme.getherfy.models;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Reserva implements Serializable {
     private int id;

@@ -1,4 +1,4 @@
-package com.guilherme.getherfy.permissoes;
+package com.guilherme.getherfy.utils;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;

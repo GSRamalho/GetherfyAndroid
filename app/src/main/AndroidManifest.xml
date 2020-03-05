@@ -32,17 +32,17 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name="com.guilherme.getherfy.activity.PrimeiraTelaActivity">
+        <activity android:name="com.guilherme.getherfy.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.guilherme.getherfy.activity.SalaDetailActivity" />
-        <activity android:name="com.guilherme.getherfy.activity.CadastrarActivity" />
-        <activity android:name="com.guilherme.getherfy.activity.LoginActivity" />
-        <activity android:name="com.guilherme.getherfy.activity.AbasActivity" />
+        <activity android:name="com.guilherme.getherfy.ui.SalaDetailActivity" />
+        <activity android:name="com.guilherme.getherfy.ui.CadastroActivity" />
+        <activity android:name="com.guilherme.getherfy.ui.LoginActivity" />
+        <activity android:name="com.guilherme.getherfy.ui.AbasActivity" />
     </application>
 
 </manifest>

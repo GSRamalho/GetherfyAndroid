@@ -2,7 +2,7 @@ package com.guilherme.getherfy.httpService;
 
 import android.os.AsyncTask;
 
-import com.guilherme.getherfy.activity.fragment.abasActivityFragments.ListaReservasFragment;
+import com.guilherme.getherfy.ui.fragments.abas.ListaReservasFragment;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
