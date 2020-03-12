@@ -109,18 +109,7 @@ public class ListaReservasAdapter extends BaseAdapter {
                         String idReserva = String.valueOf(reserva.getId());
                         reserva.setAtivo(false);
 
-                        try {
-                            String respostaStr = new HttpServiceCancelarReserva().execute(idReserva).get();
-                            Toast.makeText(viewCriada.getContext(), respostaStr, Toast.LENGTH_LONG).show();
-                            atualizaLista.atualizarLista(true);
-
-                            ListaReservasFragment.setPrecisaConexao(true);
-
-                        } catch (ExecutionException e) {
-                            e.printStackTrace();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        requestRemover(idReserva, viewCriada);
 
                     }
                 });
@@ -148,6 +137,21 @@ public class ListaReservasAdapter extends BaseAdapter {
         });
 
         return viewCriada;
+    }
+
+    public void requestRemover(String idReserva, View viewCriada) {
+        try {
+            String respostaStr = new HttpServiceCancelarReserva().execute(idReserva).get();
+            Toast.makeText(viewCriada.getContext(), respostaStr, Toast.LENGTH_LONG).show();
+            atualizaLista.atualizarLista(true);
+
+            ListaReservasFragment.setPrecisaConexao(true);
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void configuraDataHora(Reserva reserva, TextView data, TextView horaInicio, TextView horaFim) {
