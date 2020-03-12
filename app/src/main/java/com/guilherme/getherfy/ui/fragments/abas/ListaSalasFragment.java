@@ -37,13 +37,13 @@ public class ListaSalasFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_salas, container, false);
         SharedPreferences preferences = this.getActivity().getSharedPreferences("USER_LOGIN", 0);
-        final SharedPreferences.Editor editor = preferences.edit();
 
         String idOrganizacao = preferences.getString("userIdOrganizacao", null);
 
         final ListView listaDeSalas = view.findViewById(R.id.fragment_salas_lista);
         final List<Sala> salas = new SalaDAO().lista();
         listaDeSalas.setAdapter(new ListaSalasAdapter(salas, view.getContext()));
+
 
         try {
             String lista = new HttpServiceSalasByIdOrganizacao().execute(idOrganizacao).get();

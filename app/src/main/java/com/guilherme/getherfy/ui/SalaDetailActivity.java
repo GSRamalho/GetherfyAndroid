@@ -33,6 +33,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.guilherme.getherfy.ui.fragments.abas.AtualizaLista;
 import com.guilherme.getherfy.ui.fragments.dateTime.DatePickerFragment;
 import com.guilherme.getherfy.ui.fragments.dateTime.TimePickerFragment;
 import com.guilherme.getherfy.ui.fragments.salaDetail.SalaDetailInfoFragment;
@@ -54,12 +55,12 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
         DatePickerDialog.OnDateSetListener,
         TimePickerDialog.OnTimeSetListener {
 
-    SharedPreferences configHora;
     private boolean novaReservaVisivel = true;
     private GoogleMap mMap;
     SharedPreferences preferences;
     FloatingActionButton btnNovaReserva;
     FloatingActionButton btnSalvarReserva;
+    public AtualizaLista atualizaLista = null;
 
     long dateTimeInicioMilliseconds;
     long dateTimeFimMilliseconds;
@@ -78,9 +79,7 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
         mapFragment.getMapAsync(this);
         Permissoes.validarPermissoes(permissoes, this, 1);
         preferences = getSharedPreferences("USER_LOGIN", 0);
-        configHora = getSharedPreferences("IS_HORA_INICIO", 0);
 
-        final SharedPreferences.Editor editor = preferences.edit();
         mostraInfos();
 
         final TextView nomeEmpresa = findViewById(R.id.activity_info_sala_toolbar_nomeDaOrganizacao);
@@ -172,6 +171,8 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
 
                     if(mensagem.equalsIgnoreCase("Reserva realizada com sucesso")){
                         startActivity(new Intent(SalaDetailActivity.this, AbasActivity.class));
+
+
                         finish();
                     }
 
@@ -336,9 +337,6 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
         String dateTimeInicio = dataStr + " "+horaInicioStr+":00".trim();
         String dateTimeFim = dataStr + " "+horaFimStr+":00".trim();
 
-
-        System.out.println(dateTimeInicio);
-        System.out.println(dateTimeFim);
         try {
 
             Date dateTimeInicioParseado = dateTimeFormat.parse(dateTimeInicio);
@@ -346,9 +344,6 @@ public class SalaDetailActivity extends AppCompatActivity implements OnMapReadyC
             dateTimeInicioMilliseconds=dateTimeInicioParseado.getTime();
             dateTimeFimMilliseconds = dateTimeFimParseado.getTime();
 
-
-            System.out.println(dateTimeInicioMilliseconds);
-            System.out.println(dateTimeFimMilliseconds);
 
         } catch (ParseException e) {
             e.printStackTrace();

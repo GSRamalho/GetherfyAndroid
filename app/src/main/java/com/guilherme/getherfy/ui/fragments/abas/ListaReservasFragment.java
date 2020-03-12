@@ -29,6 +29,7 @@ public class ListaReservasFragment extends Fragment implements AtualizaLista {
     private String listaStr;
     private String idOrganizacao ;
     public static boolean precisaConexao;
+    public AtualizaLista atualizaLista = null;
 
     public static boolean isPrecisaConexao() {
         return precisaConexao;
@@ -51,7 +52,8 @@ public class ListaReservasFragment extends Fragment implements AtualizaLista {
         naoPossuiReservasTxt.setVisibility(View.VISIBLE);
         setPrecisaConexao(true);
 
-        carregaLista(view, idOrganizacao);
+
+            carregaLista(view, idOrganizacao);
 
 
         return view;
@@ -67,6 +69,7 @@ public class ListaReservasFragment extends Fragment implements AtualizaLista {
         if (isPrecisaConexao()) {
             try {
                 listaStr = new HttpServiceReservasByOrganizacao().execute(idOrganizacao).get();
+
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -120,6 +123,7 @@ public class ListaReservasFragment extends Fragment implements AtualizaLista {
 
         }
         return listaDeReservas;
+
     }
 
 

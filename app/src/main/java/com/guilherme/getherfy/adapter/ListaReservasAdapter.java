@@ -37,16 +37,6 @@ public class ListaReservasAdapter extends BaseAdapter {
 
 
 
-
-    public int getIdReserva() {
-        return idReserva;
-    }
-
-    public void setIdReserva(int idReserva) {
-        this.idReserva = idReserva;
-    }
-
-
     public ListaReservasAdapter(List<Reserva> reservas, Context context) {
         this.reservas = reservas;
         this.context = context;
@@ -100,8 +90,6 @@ public class ListaReservasAdapter extends BaseAdapter {
                 ImageButton btnRemover = viewCriada.findViewById(R.id.fragment_item_reserva_remover);
                 ImageButton btnCancelar = viewCriada.findViewById(R.id.fragment_item_reserva_cancelar);
 
-                btnCancelar.setClickable(true);
-                btnRemover.setClickable(true);
 
                 btnCancelar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -116,16 +104,17 @@ public class ListaReservasAdapter extends BaseAdapter {
                 btnRemover.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         linearLayout.setVisibility(View.GONE);
                         String idReserva = String.valueOf(reserva.getId());
-                        ListaReservasFragment listaReservasFragment = new ListaReservasFragment();
+                        reserva.setAtivo(false);
 
                         try {
                             String respostaStr = new HttpServiceCancelarReserva().execute(idReserva).get();
                             Toast.makeText(viewCriada.getContext(), respostaStr, Toast.LENGTH_LONG).show();
+                            atualizaLista.atualizarLista(true);
 
                             ListaReservasFragment.setPrecisaConexao(true);
-                            atualizaLista.atualizarLista(true);
 
                         } catch (ExecutionException e) {
                             e.printStackTrace();
@@ -133,10 +122,14 @@ public class ListaReservasAdapter extends BaseAdapter {
                             e.printStackTrace();
                         }
 
-                        reserva.setAtivo(false);
                     }
                 });
             } else {
+                linearLayout.setVisibility(View.GONE);
+
+            }
+
+            if(position == selecionado-1){
                 linearLayout.setVisibility(View.GONE);
 
             }
